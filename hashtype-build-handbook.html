@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HashType — website build handbook</title>
+<style>
+:root { --bg:#000000; --surface:#0D1013; --surface2:#141A1F; --line:#26313A;
+        --mint:#7EF0C1; --teal:#4FB3A9; --indigo:#6E80C8;
+        --text:#E8ECEE; --muted:#9AA6AD; --flag:#F2C14E; }
+* { box-sizing:border-box; }
+html { background:var(--bg); }
+body { margin:0; background:var(--bg); color:var(--text);
+       font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+       font-size:17px; line-height:1.65; }
+.wrap { max-width:860px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+h1,h2,h3 { font-family:'Gothamono','JetBrains Mono','IBM Plex Mono',Menlo,Consolas,monospace;
+           line-height:1.25; letter-spacing:-0.01em; }
+h1 { color:var(--mint); font-size:1.9rem; margin:0.5rem 0 0.4rem; }
+.sub { color:var(--muted); margin:0 0 1rem; }
+h2 { color:var(--mint); font-size:1.3rem; margin:2.4rem 0 0.6rem;
+     border-bottom:1px solid var(--teal); padding-bottom:0.35rem; }
+h3 { color:var(--text); font-size:1.05rem; margin:1.5rem 0 0.4rem; }
+p { margin:0.6rem 0; }
+a { color:var(--mint); }
+strong { color:#fff; }
+code { font-family:Menlo,Consolas,monospace; font-size:0.85em; color:var(--mint);
+       background:var(--surface2); padding:0.08em 0.35em; border-radius:3px; }
+.promptbox { position:relative; margin:1rem 0; }
+.promptbox pre { background:var(--surface); border:1px solid var(--line);
+       border-left:3px solid var(--mint); border-radius:4px;
+       padding:1rem 1.1rem; padding-top:2.4rem; overflow-x:auto; font-family:Menlo,Consolas,monospace;
+       font-size:0.82rem; line-height:1.55; color:var(--text); white-space:pre-wrap; margin:0; }
+.copybtn { position:absolute; top:0.5rem; right:0.5rem;
+       font-family:inherit; font-size:0.75rem; font-weight:600;
+       background:var(--mint); color:#000; border:none; border-radius:4px;
+       padding:0.35rem 0.85rem; cursor:pointer; min-height:32px; }
+.copybtn:hover { background:#a6f6d6; }
+.copybtn.done { background:var(--indigo); color:#fff; }
+table { border-collapse:collapse; width:100%; margin:1rem 0; font-size:0.9rem; display:block; overflow-x:auto; }
+th { background:var(--surface2); color:var(--mint); text-align:left; padding:0.55rem 0.65rem;
+     font-weight:600; border:1px solid var(--line); }
+td { border:1px solid var(--line); padding:0.5rem 0.65rem; vertical-align:top; }
+tr:nth-child(even) td { background:var(--surface); }
+ul,ol { margin:0.6rem 0; padding-left:1.6rem; }
+li { margin:0.3rem 0; }
+li.chk { list-style:none; margin-left:-1.3rem; }
+li.chk::before { content:'\2610\00a0\00a0'; color:var(--mint); }
+hr { border:none; border-top:1px solid var(--line); margin:2.2rem 0; }
+nav { background:var(--surface); border:1px solid var(--line); border-radius:6px;
+      padding:0.8rem 1.1rem; font-size:0.88rem; margin:1.2rem 0; }
+nav a { color:var(--mint); text-decoration:none; margin-right:0.9rem; display:inline-block; padding:0.15rem 0; }
+nav a:hover { text-decoration:underline; }
+.note { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--flag);
+        border-radius:4px; padding:0.75rem 1rem; margin:1rem 0; }
+.note strong { color:var(--flag); }
+.swatches { display:flex; flex-wrap:wrap; gap:0.6rem; margin:0.8rem 0; }
+.sw { flex:1 1 120px; border:1px solid var(--line); border-radius:6px; overflow:hidden; font-size:0.78rem; }
+.sw span { display:block; height:44px; }
+.sw div { padding:0.35rem 0.5rem; background:var(--surface); }
+.phase { color:var(--muted); font-size:0.85rem; }
+footer { margin-top:3rem; border-top:1px solid var(--line); padding-top:0.8rem;
+         font-size:0.8rem; color:var(--muted); }
+@media (max-width:600px){ body{font-size:16px;} .wrap{padding:1rem 1rem 3rem;} h1{font-size:1.55rem;} }
+@media print { .copybtn,nav{display:none;} html,body{background:#fff;color:#111;}
+  h1,h2,a,code,th{color:#1A5F5F;} .promptbox pre,td,th,.note{background:#fff;} strong{color:#000;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>HashType — website build handbook</h1>
+<p class="sub">React site · black background · deployed on Vercel from <a href="https://github.com/bryanttteo/hashtype-website">github.com/bryanttteo/hashtype-website</a></p>
+
+<nav><strong>Jump to:</strong>
+<a href="#0">0. What changed</a>
+<a href="#1">1. The job and the rules</a>
+<a href="#2">2. Brand and tech decisions</a>
+<a href="#3">3. The route</a>
+<a href="#4">4. Phase 1 — set up</a>
+<a href="#5">5. Phase 2 — content</a>
+<a href="#6">6. Phase 3 — Stitch</a>
+<a href="#7">7. Phase 4 — design files</a>
+<a href="#8">8. Phase 5 — build</a>
+<a href="#9">9. Phase 6 — ship and check</a>
+<a href="#10">10. If something goes wrong</a>
+<a href="#appA">A. Page specification</a>
+<a href="#appB">B. Review checklist</a>
+<a href="#appC">C. Inputs and open items</a>
+<a href="#appD">D. stitch-brief.md</a>
+<a href="#appE">E. Image shortlist</a>
+</nav>
+
+<p>This handbook takes the Fig &amp; Filter exercise route and applies it to a real job: HashType's company website. Everything you need is in this one document, in the order you'll need it. The prompts are ready to paste, but read the decisions inside them before you do. Directing the tools well is the skill; the tools only follow what you tell them.</p>
+
+<hr>
+<h2 id="0">0. What changed from the original handbook</h2>
+<table>
+<tr><th>Area</th><th>Original (Fig &amp; Filter)</th><th>This version (HashType)</th></tr>
+<tr><td>Stack</td><td>Plain HTML + CSS, no build tools</td><td>React (Vite) + React Router, one global stylesheet, no CSS/UI frameworks</td></tr>
+<tr><td>Content</td><td>Supplied in the pack</td><td>New Phase 2: draft from <code>company-profile.md</code>, then you approve and lock it</td></tr>
+<tr><td>Pages</td><td>Home, Menu, Catering, About, Visit</td><td>Home, Solutions &amp; Services, Industries, Customers, Contact / Book a demo</td></tr>
+<tr><td>Brand</td><td>Teal on paper</td><td>Black background, mint–indigo palette from the logo, Gothamono (to be confirmed)</td></tr>
+<tr><td>Repo</td><td>New repository</td><td>Existing repo <code>bryanttteo/hashtype-website</code></td></tr>
+<tr><td>Deploy</td><td>Static files on Vercel</td><td>Vite build on Vercel, with an SPA rewrite so page refreshes don't 404</td></tr>
+<tr><td>New checks</td><td>—</td><td>Build passes, deep links work, per-page SEO titles, sitemap, contrast on black, claims audit</td></tr>
+<tr><td>Time box</td><td>2 h 15 min class exercise</td><td>Real project: phased, with an open-items tracker (Appendix C)</td></tr>
+</table>
+
+<h2 id="1">1. The job and the rules</h2>
+<p><strong>HashType</strong> is a Singapore-based AI and automation solutions provider. It helps businesses run leaner by redesigning workflows around what AI makes possible. The focus is agentic automation, IoT, vision AI and bespoke business applications. It serves six industries: supply chain &amp; logistics, manufacturing, offshore &amp; marine, industrial services, real estate &amp; construction, and retail, F&amp;B &amp; hospitality.</p>
+<p>The site has two visitors to win over. One is an <strong>SME decision-maker</strong>, an owner or operations, plant or facilities manager, who should leave convinced HashType can cut cost, time or risk in their business. The other is a <strong>partner or evaluator</strong>, who should leave convinced HashType has delivered real work. The site succeeds when either one books a discovery call, demo or site survey.</p>
+<p><strong>What you will ship:</strong> a responsive five-page React site, live on Vercel and built from the GitHub repo. It must pass the Appendix B checklist on a phone and on a laptop.</p>
+<p>Your materials and what each is for:</p>
+<table>
+<tr><th>Item</th><th>Role</th></tr>
+<tr><td><code>company-profile.md</code></td><td>Source of truth for offerings, industries and positioning; no claim may go beyond it</td></tr>
+<tr><td>This handbook</td><td>How to deliver it, phase by phase</td></tr>
+<tr><td><code>stitch-brief.md</code> (Appendix D)</td><td>Design brief you upload to Google Stitch in Phase 3</td></tr>
+<tr><td><code>content/</code></td><td>Approved copy, brand file, logo and images. Created in Phase 2, then used exactly as written.</td></tr>
+<tr><td>Appendix C</td><td>Inputs still needed from you, and decisions still open</td></tr>
+</table>
+<p>The rules:</p>
+<ul>
+<li><strong>Copy is locked once approved.</strong> The build uses <code>content/</code> exactly as written. Nobody, including the AI, invents clients, numbers, certifications or features.</li>
+<li><strong>Stack:</strong> React with Vite, React Router for pages, and one global <code>styles.css</code> using CSS variables. No Tailwind, Bootstrap or component libraries. Add dependencies only when a rule below needs them.</li>
+<li><strong>Background is black</strong> (<code>#000000</code>) on every page and section. Surfaces may lift slightly (<code>#0D1013</code>), but never go light.</li>
+<li>Every page is reachable from every other page through the navigation, and every URL works when typed in or refreshed directly.</li>
+<li>The site must work at 375 px and at 1280 px wide.</li>
+</ul>
+
+<h2 id="2">2. Brand and tech decisions</h2>
+<h3>Colour (sampled from the logo, confirm against your brand file)</h3>
+<div class="swatches">
+<div class="sw"><span style="background:#000000;border-bottom:1px solid #26313A"></span><div>Background<br><code>#000000</code></div></div>
+<div class="sw"><span style="background:#0D1013"></span><div>Surface<br><code>#0D1013</code></div></div>
+<div class="sw"><span style="background:#7EF0C1"></span><div>Mint (primary)<br><code>#7EF0C1</code></div></div>
+<div class="sw"><span style="background:#4FB3A9"></span><div>Teal (mid)<br><code>#4FB3A9</code></div></div>
+<div class="sw"><span style="background:#5466AE"></span><div>Indigo (deep)<br><code>#5466AE</code></div></div>
+<div class="sw"><span style="background:#E8ECEE"></span><div>Text<br><code>#E8ECEE</code></div></div>
+</div>
+<ul>
+<li><strong>Mint</strong> carries primary buttons (mint fill, black text), links and key highlights. It is very readable on black.</li>
+<li><strong>Indigo</strong> is too dark for body text on black (roughly 4:1 contrast). Use it only for gradients, borders, glows and large display type.</li>
+<li>The logo's mint-to-indigo gradient can be the one signature element, for example a hero glow or a thin rule under section titles. Don't repeat it everywhere.</li>
+</ul>
+<h3>Type</h3>
+<p>Requested: <strong>Gothamono</strong>. Headings and UI labels use it. Body text uses a highly readable sans, or the same family if it has a comfortable text weight.</p>
+<p>Four free candidates are compared in <code>hashtype-font-options.html</code>: <strong>A</strong> Montserrat + Inter (closest to Gotham), <strong>B</strong> JetBrains Mono + Inter, <strong>C</strong> Space Grotesk + IBM Plex Mono labels, <strong>D</strong> IBM Plex Mono + IBM Plex Sans. All are open-licence, so they can be self-hosted from <code>public/fonts/</code>. Record the choice in <code>content/brand.md</code> and in the build prompt.</p>
+<div class="note"><strong>Open item:</strong> I couldn't find a published font called "Gothamono". It may be Gotham (Hoefler &amp; Co., a paid licence), a Gotham-style monospace, or a custom font you have. Before the build, we need the exact font name, the web font files (<code>.woff2</code>) and confirmation that the licence covers web use. If those aren't ready, the build falls back to a free stand-in: JetBrains Mono or IBM Plex Mono for headings, and Inter for body text. Swapping the font later means changing one line.</div>
+<h3>Placeholders for details not yet supplied</h3>
+<p>Contact details and the official enquiry email aren't ready, so the copy uses visible placeholders. They live in <strong>one file</strong>, <code>content/contact-details.md</code> (transcribed into <code>src/content/site.js</code>), and every page reads from it. Filling them in later is a one-file change.</p>
+<table>
+<tr><th>Placeholder</th><th>Used in</th></tr>
+<tr><td><code>[EMAIL_ENQUIRIES]</code></td><td>Footer, Contact, and all three mailto request buttons</td></tr>
+<tr><td><code>[PHONE]</code> / <code>[WHATSAPP]</code></td><td>Footer, Contact</td></tr>
+<tr><td><code>[ADDRESS]</code></td><td>Contact (defaults to "Singapore" if left blank)</td></tr>
+<tr><td><code>[LINKEDIN_URL]</code></td><td>Footer, Contact</td></tr>
+<tr><td><code>[UEN]</code></td><td>Footer</td></tr>
+<tr><td><code>[DOMAIN]</code></td><td><code>sitemap.xml</code>, <code>robots.txt</code>, Open Graph tags</td></tr>
+</table>
+<p>The site can be built and previewed with placeholders, but it <strong>cannot go public</strong> until a search of the repo for <code>[</code> placeholders returns nothing (added to Appendix B).</p>
+<h3>Logo</h3>
+<ul>
+<li><strong>Received:</strong> transparent PNG, 1048 × 1008 px, saved as <code>content/images/hashtype-logo.png</code>. It sits cleanly on black.</li>
+<li>An SVG would still be sharper at every size. It's optional for v1; the PNG is large enough for the header and hero.</li>
+<li>No separate wordmark exists, so the header sets "HashType" in the heading font beside the mark.</li>
+<li>Favicon: generated from the PNG at 32 px and 180 px during the build.</li>
+</ul>
+<h3>Tech stack</h3>
+<table>
+<tr><th>Concern</th><th>Decision</th><th>Why</th></tr>
+<tr><td>Scaffold</td><td>Vite + React (JavaScript)</td><td>Fast, simple, deploys on Vercel with no configuration</td></tr>
+<tr><td>Pages</td><td>React Router, one route per page</td><td>Real URLs like <code>/industries</code> that can be shared</td></tr>
+<tr><td>Styling</td><td>One <code>src/styles.css</code> with CSS variables</td><td>Same discipline as the original: one stylesheet, consistent tokens</td></tr>
+<tr><td>Copy</td><td><code>content/*.md</code> → transcribed verbatim into <code>src/content/*.js</code> data files</td><td>Components render data, so copy edits never touch layout code</td></tr>
+<tr><td>Static files</td><td><code>public/images/</code>, <code>public/fonts/</code></td><td>Served at <code>/images/…</code>, with exact lower-case paths</td></tr>
+<tr><td>SEO</td><td>Per-page <code>&lt;title&gt;</code> + meta description, <code>robots.txt</code>, <code>sitemap.xml</code>, Open Graph image</td><td>"Websites built to be found" is a HashType service, so the site has to show it</td></tr>
+<tr><td>Routing on Vercel</td><td><code>vercel.json</code> rewrite to <code>/index.html</code></td><td>Without it, refreshing <code>/contact</code> on the live site returns a 404</td></tr>
+<tr><td>Contact</td><td>v1: <code>mailto:</code> links for each request type</td><td>No backend needed. A form or booking tool can be added later (Appendix C).</td></tr>
+</table>
+<p><strong>An analogy for the content/build split:</strong> treat <code>content/</code> as the script and React as the stage. Actors (components) speak the lines exactly as written. If a line needs to change, you edit the script, not the set.</p>
+
+<h2 id="3">3. The route — eighteen steps in six phases</h2>
+<h3>Phase 1 — set up the project</h3>
+<ol start="1">
+<li>Clone <code>bryanttteo/hashtype-website</code> to your Mac.</li>
+<li>Scaffold a Vite + React app inside it, check it runs locally, and make the first commit.</li>
+<li>Create <code>content/</code> and <code>design/</code>, and put the logo files in <code>content/images/</code>.</li>
+</ol>
+<h3>Phase 2 — write and approve the content</h3>
+<ol start="4">
+<li>Have Claude draft the five page files, <code>brand.md</code> and <code>images.md</code> from the company profile. Anything unconfirmed is marked <code>[CONFIRM]</code>.</li>
+<li>Review every file, resolve every <code>[CONFIRM]</code>, and lock the copy.</li>
+</ol>
+<h3>Phase 3 — design with Google Stitch</h3>
+<ol start="6">
+<li>Start a Stitch project, upload <code>stitch-brief.md</code> and paste the master prompt.</li>
+<li>Judge each screen with the five questions, and ask for one testable change at a time.</li>
+<li>Download the export: a zip with one folder per screen, plus DESIGN.md.</li>
+</ol>
+<h3>Phase 4 — arrange the design files</h3>
+<ol start="9">
+<li>Save DESIGN.md in the project root.</li>
+<li>Move the five screen images into <code>design/</code> and rename them index.png, solutions.png, industries.png, customers.png and contact.png.</li>
+<li>Correct DESIGN.md so it matches Section 2: black background, tokens, font and button style.</li>
+</ol>
+<h3>Phase 5 — build</h3>
+<ol start="12">
+<li>Open Claude Code in the project folder, or upload the files to a chat app.</li>
+<li>Paste the build prompt. The AI writes the React components, pages, stylesheet and config.</li>
+<li>Run it locally, review against the prompt's rules, and quote any failed rule back for a single fix.</li>
+</ol>
+<h3>Phase 6 — ship and check</h3>
+<ol start="15">
+<li>Commit and push to the repo's <code>main</code> branch.</li>
+<li>Import the repo on Vercel (framework preset: Vite) and deploy.</li>
+<li>Run Appendix B on the live URL, on a phone and a laptop. Fix the worst failures and redeploy.</li>
+<li>Connect the domain, then submit <code>sitemap.xml</code> to Google Search Console.</li>
+</ol>
+
+<h2 id="4">4. Phase 1 — set up the project</h2>
+<p class="phase">About 15 minutes. Run these in Terminal on your Mac. You need Node.js 20 or newer (check with <code>node -v</code>).</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>git clone https://github.com/bryanttteo/hashtype-website.git
+cd hashtype-website
+
+# If the repo is empty (or holds only a README), scaffold into it:
+npm create vite@latest . -- --template react
+npm install
+npm install react-router-dom
+npm run dev          # opens http://localhost:5173 — check it loads, then Ctrl+C
+
+mkdir -p content/images design public/images public/fonts
+git add -A
+git commit -m "Scaffold Vite + React project"
+git push origin main</pre></div>
+<p>If the repo already has files in it, stop and check what they are before scaffolding over them. Vite will ask before overwriting anything.</p>
+<p>Before moving on, read Appendix A. For each page, say in your own words who arrives and the one thing the page must get them to do.</p>
+<p>Target layout once all phases are done:</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>hashtype-website/
+├── DESIGN.md            ← Stitch's design document, corrected by you (Phase 4)
+├── design/              ← screen images, named after the route they become
+│   ├── index.png  solutions.png  industries.png  customers.png  contact.png
+├── content/             ← locked copy: the source of truth for every word
+│   ├── brand.md
+│   ├── home.md  solutions.md  industries.md  customers.md  contact.md
+│   └── images/          ← logo files, photos, images.md manifest
+├── public/
+│   ├── images/          ← copies of content/images, served at /images/…
+│   ├── fonts/           ← licensed .woff2 files
+│   ├── favicon.svg  robots.txt  sitemap.xml  og-image.png
+├── src/
+│   ├── main.jsx  App.jsx  styles.css
+│   ├── components/      ← Header, Footer, Layout, Button, Section, Card…
+│   ├── pages/           ← Home, Solutions, Industries, Customers, Contact, NotFound
+│   └── content/         ← home.js … contact.js (verbatim copies of content/*.md)
+├── vercel.json
+└── package.json</pre></div>
+
+<h2 id="5">5. Phase 2 — write and approve the content</h2>
+<p class="phase">New phase. The original pack came with finished copy; this project doesn't.</p>
+<p><strong>What you are trying to achieve:</strong> one file per page holding every word that will appear on it, in final form. The build then has nothing to invent. Paste this into Claude in the HashType Project, which already has <code>company-profile.md</code>:</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>Using company-profile.md and the page specification in Appendix A of the
+HashType build handbook, draft the website copy as seven markdown files:
+brand.md, home.md, solutions.md, industries.md, customers.md, contact.md,
+and images/images.md (image manifest: filename, page, placement, alt text).
+
+Rules:
+- Lead with business outcomes (cost, time, risk, compliance), then the
+  technology. Confident, practical, jargon-light, for SME decision-makers.
+- Position HashType as AI-first: new workflows designed around AI, not
+  digitised old processes.
+- For each industry, match 1–3 relevant solutions; do not list everything.
+- Mention EDG/PSG grant support where relevant.
+- Do not invent clients, numbers, certifications, awards or capabilities
+  that are not in the profile. Where a fact is needed but unknown
+  (contact details, customer results, photos), write [CONFIRM: what is
+  needed] instead of filling it in.
+- Give every page a title (max 60 characters) and a meta description
+  (max 155 characters) at the top of its file.
+- Mark each heading, paragraph, list and button label clearly so it can
+  be transcribed verbatim into React data files.</pre></div>
+<p>Then review each file. Read it out loud. If a sentence wouldn't survive a sceptical plant manager asking "prove it", cut it or back it up. Resolve every <code>[CONFIRM]</code>. Once no <code>[CONFIRM]</code> is left, the copy is <strong>locked</strong>. Commit it:</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>git add content
+git commit -m "Lock v1 website copy"
+git push</pre></div>
+
+<h2 id="6">6. Phase 3 — design with Google Stitch</h2>
+<p><strong>What you are trying to achieve:</strong> Stitch turns a written brief into screen designs, and its output is only as good as the real information in the brief. Save Appendix D as <code>stitch-brief.md</code>, upload it to Stitch, then paste:</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>Design a five-page website exactly as specified in the attached design
+brief. Design all five screens — Home, Solutions &amp; Services, Industries,
+Customers, Contact — mobile first, with one shared style and the same
+navigation on every page. The background is pure black (#000000) on
+every screen and section; never use light or white sections. Use the
+brief's colour tokens, fonts, page jobs and content precisely. Use the
+mint colour for primary buttons with black text. Do not invent content,
+client names, logos, statistics, pages or features that are not in the
+brief.</pre></div>
+<p>If Stitch won't accept the upload, paste the whole brief below the prompt instead.</p>
+<p>Then judge every screen with the five questions in Appendix B. Ask for one testable change at a time, for example "Make the primary button the only mint-filled element on the Home screen." When every screen passes, download the export.</p>
+<p><strong>Watch for black-background traps.</strong> Stitch often slips in a white "light section" for contrast, puts grey text on black that fails contrast, or draws the logo on a white card. Reject all three.</p>
+
+<h2 id="7">7. Phase 4 — arrange the design files</h2>
+<p>The export arrives as a zip with one folder per screen (each holding <code>screen.png</code> and <code>code.html</code>) plus <code>DESIGN.md</code>. Put DESIGN.md at the project root. Move the five <code>screen.png</code> files into <code>design/</code> and rename each one after the page it becomes: <code>index.png</code> (Home), <code>solutions.png</code>, <code>industries.png</code>, <code>customers.png</code> and <code>contact.png</code>.</p>
+<p>The home screen is called <code>index</code> because the home page of every site is served from the root (<code>index.html</code>). In React the same idea applies: Home is the <code>/</code> route.</p>
+<p>Two warnings from experience still apply:</p>
+<p><strong>The screens lie about content.</strong> Stitch invents freely: fake client logos, made-up percentages, testimonials from nobody. For a B2B company this is a credibility risk, not just a mistake. Treat every screen as a <strong>layout reference only</strong>. The words come from <code>content/</code> and nowhere else.</p>
+<p><strong>Don't ship Stitch's <code>code.html</code>.</strong> It loads a CSS framework from the internet and uses temporary image links. The build makes its own React components.</p>
+<p>Before moving on, open DESIGN.md and correct it against Section 2. Check the black background, the exact hex tokens, the font family names, mint primary buttons with black text, indigo kept off body text, and one primary button per page. In the next phase this file becomes the AI's instruction sheet, and it follows the file, not what you meant.</p>
+
+<h2 id="8">8. Phase 5 — build</h2>
+<p><strong>If your assistant can read the project folder</strong> (Claude Code, recommended), run it from inside <code>hashtype-website/</code> and paste:</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>Read DESIGN.md in the root of this folder and look at the screen images
+in design/ — together they show the design I want. Build the HashType
+website into this existing Vite + React project.
+
+Content: use the copy in content/ exactly as written; do not invent,
+shorten or rewrite any text. Transcribe each content/&lt;page&gt;.md verbatim
+into src/content/&lt;page&gt;.js as data, and have components render that
+data — no copy hard-coded inside components.
+
+Structure:
+- React Router routes: / (Home), /solutions, /industries, /customers,
+  /contact, plus a NotFound page for anything else.
+- Shared Layout with Header (logo, nav, current page indicated) and
+  Footer, used by every route. Scroll to top on route change.
+- Components in src/components/, pages in src/pages/.
+- One global stylesheet, src/styles.css, with all colours, fonts and
+  spacing as CSS variables on :root. No Tailwind, no CSS frameworks,
+  no UI component libraries. The only added dependency is
+  react-router-dom.
+
+Brand:
+- Background #000000 on every page and section. Tokens: surface
+  #0D1013, mint #7EF0C1 (primary buttons with black text, links),
+  teal #4FB3A9, indigo #5466AE (gradients, borders, large display
+  only — never body text), text #E8ECEE, muted #9AA6AD.
+- Headings font: Gothamono, loaded with @font-face from
+  public/fonts/ (font-display: swap). If those files are absent, use
+  'JetBrains Mono' as the heading fallback and Inter for body text, and
+  tell me.
+
+Images: copy everything in content/images into public/images and
+reference it with exact lower-case absolute paths (for example
+/images/hashtype-logo.svg). Place each image only where
+content/images/images.md assigns it and use its alt text word for word.
+Never link to images on the internet.
+
+SEO and deploy:
+- Each page sets its own &lt;title&gt; and &lt;meta name="description"&gt; from
+  its content file (React 19 metadata tags are fine).
+- Create public/robots.txt, public/sitemap.xml (all five routes),
+  a favicon from the logo, and Open Graph tags in index.html.
+- Create vercel.json that rewrites all paths to /index.html so direct
+  links and refreshes work.
+
+I will check the result against these rules: npm run build completes
+with no errors or warnings; one primary call to action per page;
+navigation collapses into a toggle below 768 px and closes after a link
+is tapped; no horizontal scrolling at 375 px; body text at least 16 px;
+body text contrast at least 4.5:1 on black; every button and link at
+least 44 px tall; refreshing any route on the deployed site works; no
+console errors; every image loads and carries the manifest's alt text;
+no text that is not in content/.</pre></div>
+
+<p><strong>If you are using a chat app</strong> (claude.ai, ChatGPT or Gemini), first upload <code>DESIGN.md</code>, <code>content/brand.md</code>, the five copy files and <code>content/images/images.md</code>. Then paste the same prompt with this line in place of its first paragraph:</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>I have uploaded DESIGN.md, the brand file, the five pages of copy and
+the image manifest. Build the HashType website as a Vite + React
+project and return every file with its full path (src/…, public/…,
+vercel.json) so I can save each one into my repository.</pre></div>
+<p>A chat assistant never sees your images or fonts. It only writes references to them, which work because the files exist in your repository. Save each returned file at its exact path, and copy the images from <code>content/images/</code> into <code>public/images/</code>, keeping file names exactly as they are.</p>
+
+<h3>Check it locally</h3>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>npm run dev       # click through every page at 375 px and 1280 px
+npm run build     # must finish with no errors
+npm run preview   # test the production build, including refreshing /contact</pre></div>
+<p>In Chrome, open DevTools (⌥⌘I), turn on the device toolbar (⇧⌘M) and set the width to 375 to check the phone view.</p>
+
+<p><strong>Why the prompt is shaped this way.</strong> Keep these habits when you adapt it:</p>
+<ul>
+<li><strong>Name the sources and where they live.</strong> Exact paths remove the assistant's main excuse to guess.</li>
+<li><strong>Protect the copy, and separate it from code.</strong> "Exactly as written", plus data files instead of hard-coded text, keeps invented marketing lines out. Future copy edits also never risk breaking the layout.</li>
+<li><strong>State the checks up front.</strong> Each rule is one you can verify yourself, so you can quote it back when it fails.</li>
+<li><strong>Spell out the deploy details.</strong> The two classic React-on-Vercel failures are images that worked locally but break live (letter case in paths) and pages that 404 on refresh (missing rewrite). The prompt prevents both.</li>
+</ul>
+<p><strong>When the build misses, don't start over.</strong> Quote the rule that failed and ask for that fix only:</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>The menu does not close after I tap a link on mobile — the build rules
+said the navigation closes after a link is tapped. Fix that and change
+nothing else.</pre></div>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>The Industries page contains text that is not in content/industries.md.
+Replace src/content/industries.js with a verbatim transcription of that
+file, unchanged, and change nothing else.</pre></div>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre>There is a light grey section on the Solutions page. The rule is a black
+#000000 background on every section. Fix that and change nothing else.</pre></div>
+
+<h2 id="9">9. Phase 6 — ship and check</h2>
+<ol>
+<li><strong>Push:</strong> <code>git add -A &amp;&amp; git commit -m "Build v1 site" &amp;&amp; git push origin main</code></li>
+<li><strong>Deploy:</strong> on vercel.com choose Add New → Project, import <code>bryanttteo/hashtype-website</code>, and confirm the framework preset is <strong>Vite</strong> (build command <code>npm run build</code>, output folder <code>dist</code>). Then deploy. From now on, every push to <code>main</code> redeploys automatically, and other branches get preview URLs.</li>
+<li><strong>Check:</strong> run Appendix B against the <strong>live URL</strong> on your phone and laptop, not on localhost. Fix the worst failures first, push and recheck.</li>
+<li><strong>Domain and search:</strong> add your domain under Vercel → Project → Settings → Domains and follow its DNS instructions. Then verify the domain in Google Search Console and submit <code>/sitemap.xml</code>. Update the domain in <code>sitemap.xml</code> and the Open Graph tags if it changed.</li>
+</ol>
+
+<h2 id="10">10. If something goes wrong</h2>
+<ul>
+<li><strong>Stitch keeps producing crowded layouts:</strong> the prompt is listing features instead of each page's one job. Point Stitch back at the job lines in the brief and regenerate.</li>
+<li><strong>Stitch adds white sections or fake logos:</strong> quote the brief's rule back ("pure black on every section", "no client names not in the brief") and ask for that change only.</li>
+<li><strong>Stitch won't export:</strong> take screenshots of the screens yourself, put them in <code>design/</code>, and ask Stitch to describe the design in writing. Save its answer as <code>DESIGN.md</code>.</li>
+<li><strong>The AI build ignores the design:</strong> check that <code>DESIGN.md</code> is at the root and the images are in <code>design/</code>, then point the assistant at them again by path.</li>
+<li><strong>The AI invented text:</strong> quote the protect-the-copy line and name the file, as in the second fix prompt above.</li>
+<li><strong>A page shows 404 when refreshed on the live site:</strong> <code>vercel.json</code> is missing or not at the repo root. It must contain a rewrite from <code>/(.*)</code> to <code>/index.html</code>.</li>
+<li><strong>Images or fonts work locally but not live:</strong> the path's letter case doesn't match the file name, or the file is in <code>src/</code> instead of <code>public/</code>.</li>
+<li><strong>The Vercel build fails:</strong> run <code>npm run build</code> locally, since the error is the same. Fix it, push, and Vercel retries.</li>
+<li><strong>A blank white page live:</strong> open the browser console. It's usually a JavaScript error or a wrong asset path. Paste the exact error to the assistant.</li>
+</ul>
+
+<hr>
+<h2 id="appA">Appendix A — the page specification</h2>
+<p>Five pages. Each page has one job, and everything on a page either serves that job or gets removed.</p>
+<h3>Global requirements (every page)</h3>
+<ul>
+<li>Header: logo/wordmark linking to Home, and nav with Home, Solutions, Industries, Customers and Contact. The current page is visibly indicated. A small <strong>outlined</strong> "Book a demo" link may sit in the header; it is secondary and never mint-filled.</li>
+<li>Below 768 px the nav collapses into a toggle. All touch targets are at least 44 px tall.</li>
+<li>Footer: logo, one-line description, nav links, email, phone, LinkedIn, UEN (if provided) and © HashType with the current year.</li>
+<li>Black background throughout; one stylesheet; consistent type and colour per Section 2.</li>
+<li>Every image has meaningful alt text from <code>content/images/images.md</code>.</li>
+<li>No content beyond <code>content/</code>. No unverified claims, statistics, client names, certifications or awards.</li>
+<li>Each page has its own title and meta description.</li>
+</ul>
+<h3>1. Home (<code>/</code>)</h3>
+<p><strong>Who arrives:</strong> an SME decision-maker, often on a phone, from search, LinkedIn or a referral. They don't know HashType yet.</p>
+<p><strong>The one job:</strong> make them understand what HashType does for a business like theirs and book a discovery call.</p>
+<p><strong>Must contain:</strong> a hero with the logo, an AI-first positioning line and an outcome statement; three outcome pillars (for example cost, time, risk/compliance); a short teaser of the solutions linking to Solutions; an industries strip of six that links to Industries; a short grant-support note (EDG/PSG); and one primary call to action, "Book a discovery call", linking to Contact.</p>
+<p><strong>Must not contain:</strong> full service details, walls of technical jargon, more than one primary call to action, or any statistic without a source.</p>
+<h3>2. Solutions &amp; Services (<code>/solutions</code>)</h3>
+<p><strong>Who arrives:</strong> someone checking whether HashType can solve their specific problem.</p>
+<p><strong>The one job:</strong> let them match their problem to a solution in under a minute.</p>
+<p><strong>Must contain:</strong> the five solutions (Bespoke Business Applications, Digital Enablement, Intelligence via IoT, Vision AI, Agentic Automation), each as outcome first, then how it works. Also the business applications (AIM, CRM, Monitoring Platforms); the services (AI consultancy, process analysis, n8n automation, web design &amp; SEO, grant applications, demo/site survey); and one primary call to action, "Book a demo".</p>
+<p><strong>Must not contain:</strong> pricing, vendor or tool logos you have no partnership for, or claims beyond the profile.</p>
+<h3>3. Industries (<code>/industries</code>)</h3>
+<p><strong>Who arrives:</strong> someone who thinks "do they understand <em>my</em> industry?"</p>
+<p><strong>The one job:</strong> let them find their industry and recognise their own problems in it.</p>
+<p><strong>Must contain:</strong> the six industries, each with two or three typical problems and the one to three HashType solutions that fit (matched, not everything); jump links or tabs so a visitor can go straight to their industry; and one primary call to action, "Book a site survey".</p>
+<p><strong>Must not contain:</strong> invented case results or client names.</p>
+<h3>4. Customers (<code>/customers</code>)</h3>
+<p><strong>Who arrives:</strong> someone nearly convinced, looking for proof that HashType has delivered.</p>
+<p><strong>The one job:</strong> build trust with real evidence.</p>
+<p><strong>Must contain:</strong> only customers cleared for public use. For each: name and logo, the problem, what was delivered, and the result (figures only if verified), plus a testimonial if one was given. Partners are credited where they co-delivered. One primary call to action: "Talk to us about your project".</p>
+<p><strong>Decision for v1:</strong> no customers are cleared, so this page launches as <strong>"Use cases"</strong> (route <code>/use-cases</code>, nav label "Use cases"). For v1, read "Customers" and <code>/customers</code> as "Use cases" and <code>/use-cases</code> everywhere in this handbook, including the build prompt, sitemap, design file names and Stitch brief. The rest of this section applies when the first customer is cleared.</p>
+<p><strong>Fallback:</strong> if no customer is cleared at launch, retitle the page "Use cases". Show industry scenarios with no client names, and add customers later without changing the layout.</p>
+<p><strong>Must not contain:</strong> logos used without permission, unverified numbers, or any suggestion that HashType delivered alone what partners co-delivered.</p>
+<h3>5. Contact / Book a demo (<code>/contact</code>)</h3>
+<p><strong>Who arrives:</strong> someone ready to talk.</p>
+<p><strong>The one job:</strong> get them to request a discovery call, demo or site survey with no friction.</p>
+<p><strong>Must contain:</strong> the three request types as clear choices (each opens a pre-filled email in v1); email and phone; a short "what happens next" (for example "we reply within one business day", if you will commit to it); location (city or address, if provided); and LinkedIn.</p>
+<p><strong>Must not contain:</strong> long copy, or a form that collects personal data without a PDPA privacy notice.</p>
+<h3>Responsive requirements</h3>
+<table>
+<tr><th>Behaviour</th><th>Mobile (≤ 767 px)</th><th>Laptop (≥ 1024 px)</th></tr>
+<tr><td>Navigation</td><td>Collapsed behind a toggle, closes after a link is tapped</td><td>Fully visible</td></tr>
+<tr><td>Solutions cards</td><td>Single column</td><td>Two or three columns</td></tr>
+<tr><td>Industries</td><td>Stacked sections with jump links</td><td>Grid or tabs</td></tr>
+<tr><td>Customer cases</td><td>Stacked cards</td><td>Side-by-side cards</td></tr>
+<tr><td>Hero</td><td>Logo and text readable, CTA visible within one scroll</td><td>Full-width; CTA visible without scrolling</td></tr>
+<tr><td>Body text</td><td>At least 16 px, no zooming</td><td>Comfortable measure (about 60–75 characters per line)</td></tr>
+</table>
+
+<hr>
+<h2 id="appB">Appendix B — the review checklist</h2>
+<p>Run this against the <strong>live Vercel URL</strong>: every page on a laptop, then every page on a phone (or a 375 px window). Fix the worst failures first and redeploy.</p>
+<h3>The five questions — every page</h3>
+<table>
+<tr><th>#</th><th>Question</th><th>Principle</th><th>Pass looks like</th></tr>
+<tr><td>1</td><td>What do I see in the first three seconds?</td><td>Visual hierarchy</td><td>The most important element is unmistakably the most prominent</td></tr>
+<tr><td>2</td><td>What is this page for?</td><td>One job per page</td><td>You can answer in one sentence, and the primary action matches it</td></tr>
+<tr><td>3</td><td>Where does this surprise the user?</td><td>Jakob's Law</td><td>Nav, links and buttons look and behave as on every other site</td></tr>
+<tr><td>4</td><td>What can be removed?</td><td>Hick's Law</td><td>Nothing competes with the one job; exactly one mint-filled primary CTA</td></tr>
+<tr><td>5</td><td>Can a thumb hit this?</td><td>Fitts's Law</td><td>Every link and button is comfortably tappable without zooming</td></tr>
+</table>
+<h3>Mobile checks — every page at 375 px</h3>
+<ul>
+<li class="chk">The nav collapses into a working toggle, all five pages are reachable from it, and it closes after a tap.</li>
+<li class="chk">No horizontal scrolling anywhere.</li>
+<li class="chk">Body text is readable without pinch-zooming.</li>
+<li class="chk">Images and the logo scale down without overlapping text.</li>
+<li class="chk">The page's one job is achievable within the first two screens of scrolling.</li>
+</ul>
+<h3>Brand checks</h3>
+<ul>
+<li class="chk">Every section is black; there are no white or light-grey bands.</li>
+<li class="chk">The logo shows with no white box around it, and the favicon appears in the browser tab.</li>
+<li class="chk">Body and muted text are clearly readable on black (contrast at least 4.5:1). Indigo is never used for body text.</li>
+<li class="chk">Headings use the agreed font (or the documented fallback) on every page.</li>
+</ul>
+<h3>Content and claims checks</h3>
+<ul>
+<li class="chk">No <code>[PLACEHOLDER]</code> text remains anywhere on the live site (search the repo for <code>[</code>).</li>
+<li class="chk">Every word on the site exists in <code>content/</code>: no lorem ipsum, no leftover AI commentary.</li>
+<li class="chk">No client name, logo, statistic, certification or award appears that isn't cleared and verified.</li>
+<li class="chk">Each industry shows one to three matched solutions, not the whole list.</li>
+<li class="chk">Grant support (EDG/PSG) is mentioned where relevant, and every page ends with a demo, call or site survey CTA.</li>
+<li class="chk">Each Contact request opens an email to the right address with the right subject line.</li>
+</ul>
+<h3>Technical checks (React and deploy)</h3>
+<ul>
+<li class="chk"><code>npm run build</code> completes with no errors, and the Vercel deploy is green.</li>
+<li class="chk">Typing or refreshing <code>/solutions</code>, <code>/industries</code>, <code>/customers</code> and <code>/contact</code> on the live URL loads the page, and an unknown path shows the NotFound page.</li>
+<li class="chk">The browser console shows no errors on any page.</li>
+<li class="chk">The current page is indicated in the nav, and each route opens scrolled to the top.</li>
+<li class="chk">Every image and font loads on the live site, with nothing linked from other websites.</li>
+<li class="chk">Every image has meaningful alt text.</li>
+<li class="chk">Each page has its own title and meta description (check the browser tab and view-source).</li>
+<li class="chk"><code>/robots.txt</code> and <code>/sitemap.xml</code> load, and the sitemap lists all five routes on the live domain.</li>
+<li class="chk">Sharing the URL in WhatsApp or LinkedIn shows the Open Graph image and description.</li>
+<li class="chk">Lighthouse (in Chrome DevTools, mobile) gives Accessibility at least 90 and Performance at least 80. These are targets; record the scores.</li>
+<li class="chk">The repo has no unused files: no Stitch <code>code.html</code>, no <code>node_modules</code>, no <code>.env</code> secrets.</li>
+</ul>
+<h3>Self-score</h3>
+<p>Each page scores 0–5, one point per question passed, so the site scores out of 25. Any mobile-check or claims-check failure caps that page at 3. Be as hard on HashType's site as a prospective client would be, because they will be.</p>
+
+<hr>
+<h2 id="appC">Appendix C — inputs and open items</h2>
+<p>Tick these off before the phase that needs them.</p>
+<table>
+<tr><th>#</th><th>Item</th><th>Needed by</th><th>Status</th></tr>
+<tr><td>1</td><td>Logo as transparent PNG (≥ 1024 px) or SVG, plus a "HashType" wordmark if one exists</td><td>Phase 1</td><td><strong>Done</strong>: transparent PNG received. SVG optional.</td></tr>
+<tr><td>2</td><td>Exact font name for "Gothamono", the <code>.woff2</code> files, and confirmation the licence covers web use. Otherwise, approve the free fallback.</td><td>Phase 3</td><td>Choose A–D from <code>hashtype-font-options.html</code></td></tr>
+<tr><td>3</td><td>Contact details: email (general and/or sales), phone/WhatsApp, address or "Singapore", LinkedIn URL, UEN</td><td>Phase 2</td><td>Placeholders in place; supply before launch</td></tr>
+<tr><td>4</td><td>Customers cleared for public listing: name, logo, problem, delivery, result and testimonial, plus how to credit partners. Otherwise, use the "Use cases" fallback.</td><td>Phase 2</td><td><strong>Decided</strong>: launch as "Use cases"</td></tr>
+<tr><td>5</td><td>Imagery: your own project or site photos (preferred), or licensed stock. No images linked from other sites.</td><td>Phase 2</td><td>Shortlist in Appendix E; download and save</td></tr>
+<tr><td>6</td><td>How demo requests arrive: mailto (v1 default), a form service, or a booking link such as Calendly. A form needs a PDPA privacy notice.</td><td>Phase 2</td><td>mailto; official email to come</td></tr>
+<tr><td>7</td><td>Domain name, and who manages its DNS</td><td>Phase 6</td><td>Open</td></tr>
+<tr><td>8</td><td>Vercel account connected to the GitHub account that owns the repo</td><td>Phase 6</td><td>Open</td></tr>
+<tr><td>9</td><td>A response-time promise for "what happens next" (for example one business day), only if you will keep it</td><td>Phase 2</td><td>Open</td></tr>
+<tr><td>10</td><td>Analytics (optional): for example Vercel Analytics or GA4, with a cookie notice if required</td><td>Phase 6</td><td>Optional</td></tr>
+</table>
+<p><strong>Later, not v1:</strong> pre-rendering for stronger SEO (an SPA is indexable, but pre-rendered HTML is more reliable), a blog or insights section, and individual pages per industry or solution.</p>
+
+<hr>
+<h2 id="appD">Appendix D — stitch-brief.md</h2>
+<p>Copy this into a file named <code>stitch-brief.md</code>. After Phase 2, replace the bracketed summaries with the locked copy from <code>content/</code>, so Stitch designs around real words.</p>
+<div class="promptbox"><button class="copybtn" type="button">Copy</button><pre># HashType — website design brief
+
+## The business
+HashType is a Singapore-based AI and automation solutions provider. It
+helps SMEs run leaner by redesigning workflows around what AI makes
+possible — AI-first, not digitising old processes. It builds practical,
+deployable solutions, not slide decks.
+
+## Audience
+SME owners and operations / plant / facilities managers in supply chain
+&amp; logistics, manufacturing, offshore &amp; marine, industrial services, real
+estate &amp; construction, and retail, F&amp;B &amp; hospitality. Busy, practical,
+sceptical of hype. They care about cost, time, risk and compliance.
+
+## Brand
+- Background: pure black #000000 on every screen and section. No light
+  or white sections anywhere.
+- Surface (cards): #0D1013. Hairlines: #26313A.
+- Primary: mint #7EF0C1 — primary buttons (black text), links, key
+  highlights. One mint-filled button per page.
+- Secondary: teal #4FB3A9. Deep accent: indigo #5466AE — gradients,
+  borders and glows only, never body text.
+- Signature: the logo's mint-to-indigo gradient, used sparingly (hero
+  glow, thin rules under section titles).
+- Text #E8ECEE, muted #9AA6AD.
+- Type: Gothamono for headings and UI labels; clean sans for body.
+- Logo: circuit-trace monogram (mint→indigo gradient). Place on black,
+  never on a white card.
+- Feel: precise, technical, calm and confident. Engineering, not
+  sci-fi. Generous spacing, clear hierarchy.
+
+## Navigation (every page)
+Home · Solutions · Industries · Customers · Contact. Optional outlined
+"Book a demo" link in the header. Collapses to a toggle on mobile.
+Footer: logo, one-line description, links, email, phone, LinkedIn.
+
+## Pages
+
+### 1. Home
+Job: make an SME decision-maker understand what HashType does for them
+and book a discovery call.
+Content: hero (logo, AI-first positioning line, outcome statement) ·
+three outcome pillars (cost, time, risk/compliance) · solutions teaser ·
+six-industry strip · grant support note (EDG/PSG) · primary CTA "Book a
+discovery call".
+[Replace with locked copy from content/home.md]
+
+### 2. Solutions &amp; Services
+Job: let a visitor match their problem to a solution in under a minute.
+Content: five solutions — Bespoke Business Applications, Digital
+Enablement, Intelligence via IoT, Vision AI, Agentic Automation — each
+outcome first, then how it works · business applications: Asset
+Integrity Management, CRM, Monitoring Platforms · services: AI
+consultancy, business process analysis, n8n automation, web design &amp;
+SEO, grant applications, demo / site survey · primary CTA "Book a demo".
+[Replace with locked copy from content/solutions.md]
+
+### 3. Industries
+Job: let a visitor find their industry and recognise their problems.
+Content: six industries, each with 2–3 typical problems and 1–3 matched
+solutions · jump links / tabs · primary CTA "Book a site survey".
+[Replace with locked copy from content/industries.md]
+
+### 4. Customers
+Job: build trust with real evidence.
+Content: case cards — customer name/logo, problem, delivered, result,
+optional testimonial, partner credit · primary CTA "Talk to us about
+your project". Design the card layout only; do NOT invent names,
+logos or numbers.
+[Replace with locked copy from content/customers.md]
+
+### 5. Contact / Book a demo
+Job: get a visitor to request a discovery call, demo or site survey.
+Content: three request choices · email, phone, LinkedIn · location ·
+"what happens next" line.
+[Replace with locked copy from content/contact.md]
+
+## Do not
+Invent client names, logos, testimonials, statistics, certifications,
+pages or features. Use stock "AI brain" or robot-hand imagery. Add
+light sections.</pre></div>
+
+<hr>
+<h2 id="appE">Appendix E — image shortlist</h2>
+<p>You have no project photos yet, so v1 uses free stock from <a href="https://unsplash.com/license">Unsplash</a>. Its licence allows commercial use and doesn't require attribution, but crediting the photographer is a good habit. Images are a supporting layer here: the logo, type and black canvas carry the brand.</p>
+<div class="note"><strong>Before you download each one:</strong> check the photo page says <em>Free to use under the Unsplash License</em>. Some search results are <strong>Unsplash+</strong> (paid, separate licence) and carry a "+" badge; skip those or swap for another. Download the full size, then save it to <code>content/images/</code> with a lower-case name such as <code>industry-manufacturing.jpg</code>.</div>
+<table>
+<tr><th>Placement</th><th>Subject</th><th>Link</th><th>Status</th></tr>
+<tr><td>Home hero</td><td>Container port with cranes, ideally dusk or night</td><td><a href="https://unsplash.com/photos/a-couple-of-large-metal-structures-sitting-next-to-each-other-rZJx6d-oa5A">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Home / Solutions — IoT</td><td>Circuit board close-up (suits Intelligence via IoT)</td><td><a href="https://unsplash.com/photos/closeup-photo-of-circuit-board-FCrYdP8gohg">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Supply chain &amp; logistics</td><td>Warehouse aisles with tall shelving</td><td><a href="https://unsplash.com/photos/rows-of-shelves-stacked-with-boxes-in-a-warehouse-CpIWRMy0jkg">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Supply chain &amp; logistics (alt)</td><td>Worker walking through a large warehouse</td><td><a href="https://unsplash.com/photos/worker-walks-through-a-large-warehouse-with-tall-shelves-Itmv4wC8xYM">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Manufacturing</td><td>Factory employees in hardhats between compressor units</td><td><a href="https://unsplash.com/photos/group-of-factory-employees-in-hardhats-and-blue-workwear-walking-in-line-between-compressor-units-in-industry-n9r0S3zfoMc">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Industrial services</td><td>Engineer at a control panel in a workshop</td><td><a href="https://unsplash.com/photos/young-serious-engineer-with-beard-standing-in-front-of-control-panel-in-workshop-and-choosing-which-button-to-press-tfmmuXieqW4">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Offshore &amp; marine</td><td>Ship's deck and bridge</td><td><a href="https://unsplash.com/photos/ships-deck-and-bridge-under-a-clear-sky-EXmlmdz-iPU">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Real estate &amp; construction</td><td>Building site in the evening with tower cranes</td><td><a href="https://unsplash.com/photos/the-building-site-is-in-the-evening-tower-cranes-build-residential-buildings-6fcRmptZa0A">Unsplash</a></td><td>Open</td></tr>
+<tr><td>Retail, F&amp;B &amp; hospitality</td><td>Chef working in a commercial kitchen</td><td><a href="https://unsplash.com/photos/a-chef-teaching-how-to-cook-cutting-vegetables-indoors-in-commercial-kitchen-L7hyXVobT3E">Unsplash</a></td><td>Open</td></tr>
+</table>
+<p><strong>How to judge a replacement:</strong> real places and real work, not stock "AI brain" or robot-hand art. Prefer darker or dusk shots, which sit naturally on black. Avoid visible company logos and identifiable faces in close-up. Keep each image under 300 KB after export (WebP or JPG at about 1600 px wide); the build can compress them.</p>
+<p><strong>Later:</strong> replace stock with your own site photos (AIM dashboards, sensor installs, camera deployments) as soon as you have them. Real work persuades sceptical buyers far more than stock.</p>
+
+<footer>HashType website build handbook · adapted from the build handbook by Swarup Biswas | swarupbiswas.com · v3, November 2026</footer>
+</div>
+<script>
+document.querySelectorAll('.copybtn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var text = btn.parentElement.querySelector('pre').innerText;
+    function done(){ btn.textContent='Copied \u2713'; btn.classList.add('done');
+      setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); }, 1800); }
+    function fallback(){
+      var ta=document.createElement('textarea'); ta.value=text;
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+});
+</script>
+</body>
+</html>
