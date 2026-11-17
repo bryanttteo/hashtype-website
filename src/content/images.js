@@ -15,3 +15,14 @@ export const imageAlt = {
   'industry-construction.jpg': 'Building site at dusk with tower cranes',
   'industry-fnb.jpg': 'Chef preparing food in a commercial kitchen',
 }
+
+// Which line icon stands in for each photo until the photo is added.
+export const sectorForImage = {
+  'industry-logistics.jpg': 'logistics',
+  'industry-manufacturing.jpg': 'manufacturing',
+  'industry-marine.jpg': 'marine',
+  'industry-industrial-services.jpg': 'services',
+  'industry-construction.jpg': 'construction',
+  'industry-fnb.jpg': 'fnb',
+  'solutions-circuit.jpg': 'iot',
+}

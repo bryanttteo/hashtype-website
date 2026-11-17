@@ -1,5 +1,6 @@
 import CircuitArt from './CircuitArt.jsx'
-import { imageAlt } from '../content/images.js'
+import SectorArt from './SectorArt.jsx'
+import { imageAlt, sectorForImage } from '../content/images.js'
 
 // Every photo dropped into src/assets/photos/ is found at build time.
 const files = import.meta.glob('../assets/photos/*.{jpg,jpeg,png,webp}', {
@@ -32,6 +33,8 @@ export default function Photo({ name, className = '', eager = false }) {
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
         />
+      ) : sectorForImage[name] ? (
+        <SectorArt sector={sectorForImage[name]} />
       ) : (
         <CircuitArt seed={name ?? 'hashtype'} />
       )}
