@@ -1,6 +1,6 @@
 import { Button, Seo } from '../components/Ui.jsx'
 import { contactPage } from '../content/contact.js'
-import { contact, emailRequests, isPlaceholder, mailtoFor } from '../content/site.js'
+import { contact, emailRequests, mailtoFor, telHref, whatsappHref } from '../content/site.js'
 
 export default function Contact() {
   const { intro, requests, nextSteps, details, grantsNote } = contactPage
@@ -9,14 +9,8 @@ export default function Contact() {
     {
       label: details.labels.phone,
       value: contact.phone,
-      href: isPlaceholder(contact.phone) ? null : `tel:${contact.phone.replace(/\s/g, '')}`,
-    },
-    {
-      label: details.labels.whatsapp,
-      value: contact.whatsapp,
-      href: isPlaceholder(contact.whatsapp)
-        ? null
-        : `https://wa.me/${contact.whatsapp.replace(/\D/g, '')}`,
+      href: telHref(contact.phone),
+      extra: { label: details.labels.whatsappLink, href: whatsappHref(contact.phone) },
     },
     { label: details.labels.location, value: contact.location, href: null },
     { label: details.labels.linkedin, value: contact.linkedinUrl, href: contact.linkedinUrl, external: true },
@@ -74,6 +68,11 @@ export default function Contact() {
                       </a>
                     ) : (
                       r.value
+                    )}
+                    {r.extra && (
+                      <a className="extra" href={r.extra.href} target="_blank" rel="noopener noreferrer">
+                        {r.extra.label}
+                      </a>
                     )}
                   </dd>
                 </div>

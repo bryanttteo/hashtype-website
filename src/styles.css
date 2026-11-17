@@ -959,6 +959,11 @@ main > :last-child {
   margin: 0;
   overflow-wrap: anywhere;
 }
+.details dd {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
 .details a {
   display: inline-flex;
   align-items: center;

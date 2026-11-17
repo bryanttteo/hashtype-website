@@ -42,8 +42,8 @@ export const contactPage = {
     heading: 'Other ways to reach us',
     labels: {
       email: 'Email',
-      phone: 'Phone',
-      whatsapp: 'WhatsApp',
+      phone: 'Phone / WhatsApp',
+      whatsappLink: 'Message on WhatsApp',
       location: 'Location',
       linkedin: 'LinkedIn',
     },
