@@ -4,8 +4,8 @@
 
 export const contact = {
   emailEnquiries: '[EMAIL_ENQUIRIES]',
-  phone: '[PHONE]',
-  whatsapp: '[WHATSAPP]', // set to '' to hide if not offered
+  // One number for calls and WhatsApp.
+  phone: '+65 9066 7757',
   location: '[ADDRESS]', // or 'Singapore'
   linkedinUrl: '[LINKEDIN_URL]',
   uen: '[UEN]',
@@ -16,6 +16,7 @@ export const siteUrl = 'https://[DOMAIN]'
 
 export const brand = {
   name: 'HashType',
+  legalName: 'HashType Technologies Pte Ltd',
   description:
     'HashType helps businesses run leaner with AI-first automation, IoT and vision AI.',
   logoAlt: 'HashType logo',
@@ -47,6 +48,9 @@ Thanks,`,
 
 export const isPlaceholder = (value) =>
   typeof value === 'string' && value.trim().startsWith('[')
+
+export const telHref = (number) => `tel:${number.replace(/[^\d+]/g, '')}`
+export const whatsappHref = (number) => `https://wa.me/${number.replace(/\D/g, '')}`
 
 export const mailtoFor = (subject) =>
   `mailto:${contact.emailEnquiries}?subject=${encodeURIComponent(

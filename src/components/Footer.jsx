@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import mark from '../assets/hashtype-mark-128.png'
-import { brand, contact, nav, isPlaceholder } from '../content/site.js'
+import { brand, contact, nav, telHref, whatsappHref } from '../content/site.js'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -30,11 +30,12 @@ export default function Footer() {
             <a href={`mailto:${contact.emailEnquiries}`}>{contact.emailEnquiries}</a>
           </li>
           <li>
-            {isPlaceholder(contact.phone) ? (
-              <span>{contact.phone}</span>
-            ) : (
-              <a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
-            )}
+            <a href={telHref(contact.phone)}>{contact.phone}</a>
+          </li>
+          <li>
+            <a href={whatsappHref(contact.phone)} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
           </li>
           <li>
             <a href={contact.linkedinUrl} rel="noopener noreferrer" target="_blank">
@@ -45,7 +46,7 @@ export default function Footer() {
       </div>
       <div className="container footer-base">
         <span>
-          © {year} {brand.name}
+          © {year} {brand.legalName}
         </span>
         {contact.uen && <span>UEN {contact.uen}</span>}
       </div>
