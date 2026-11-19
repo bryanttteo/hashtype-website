@@ -3,7 +3,7 @@
 // The site must not go public while any value still starts with "[".
 
 export const contact = {
-  emailEnquiries: '[EMAIL_ENQUIRIES]',
+  emailEnquiries: 'enquiries@hashtype.net',
   // One number for calls and WhatsApp.
   phone: '+65 9066 7757',
   location: '[ADDRESS]', // or 'Singapore'
@@ -11,8 +11,8 @@ export const contact = {
   uen: '[UEN]',
 }
 
-// Also update public/sitemap.xml, public/robots.txt and the og: tags in index.html.
-export const siteUrl = 'https://[DOMAIN]'
+// If the domain changes, also update public/sitemap.xml, public/robots.txt and the og: tags in index.html.
+export const siteUrl = 'https://hashtype.net'
 
 export const brand = {
   name: 'HashType',
