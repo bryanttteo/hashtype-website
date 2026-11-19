@@ -33,7 +33,6 @@ export const solutions = {
         outcome:
           "Know what's happening on your equipment and sites in real time, and get alerted before small problems become costly ones.",
         how: 'Sensors capture the data; we turn it into dashboards, alerts and insights.',
-        image: 'solutions-circuit.jpg',
       },
       {
         id: 'vision-ai',

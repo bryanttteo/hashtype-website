@@ -12,7 +12,6 @@ export const home = {
     body: "We don't digitise your old processes. We redesign them around what AI makes possible, then build the automation, sensors and vision systems that make them run.",
     primary: { label: 'Book a discovery call', to: '/contact' },
     secondary: { label: 'See our solutions', to: '/solutions' },
-    image: 'hero-port-cranes.jpg',
   },
   outcomes: {
     heading: 'What changes for your business',

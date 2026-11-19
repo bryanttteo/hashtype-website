@@ -1,4 +1,4 @@
-import Photo from '../components/Photo.jsx'
+import SolutionIcon from '../components/SolutionIcon.jsx'
 import { ClosingCta, SectionHeading, Seo } from '../components/Ui.jsx'
 import { solutions } from '../content/solutions.js'
 
@@ -30,7 +30,7 @@ export default function Solutions() {
                     {item.how}
                   </p>
                 </div>
-                {item.image && <Photo name={item.image} className="solution-photo" />}
+                <SolutionIcon icon={item.id} />
               </article>
             ))}
           </div>
