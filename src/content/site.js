@@ -8,7 +8,7 @@ export const contact = {
   phone: '+65 9066 7757',
   location: '', // hidden for now (home office); set e.g. 'Singapore' to show it
   linkedinUrl: 'https://www.linkedin.com/company/hashtype',
-  uen: '[UEN]',
+  uen: '', // hidden until registered; set e.g. '2026xxxxxK' to show it in the footer
 }
 
 // If the domain changes, also update public/sitemap.xml, public/robots.txt and the og: tags in index.html.
