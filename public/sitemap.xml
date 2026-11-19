@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace [DOMAIN] before launch. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://[DOMAIN]/</loc></url>
-  <url><loc>https://[DOMAIN]/solutions</loc></url>
-  <url><loc>https://[DOMAIN]/industries</loc></url>
-  <url><loc>https://[DOMAIN]/projects</loc></url>
-  <url><loc>https://[DOMAIN]/contact</loc></url>
+  <url><loc>https://hashtype.net/</loc></url>
+  <url><loc>https://hashtype.net/solutions</loc></url>
+  <url><loc>https://hashtype.net/industries</loc></url>
+  <url><loc>https://hashtype.net/projects</loc></url>
+  <url><loc>https://hashtype.net/contact</loc></url>
 </urlset>

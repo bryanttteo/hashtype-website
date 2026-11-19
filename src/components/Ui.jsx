@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { siteUrl } from '../content/site.js'
 
 // Primary = mint fill with black text (one per page). Outline = secondary.
 export function Button({ to, href, variant = 'primary', children, ...rest }) {
@@ -36,11 +37,16 @@ export function SectionHeading({ index, children, as: Tag = 'h2', id }) {
 }
 
 export function Seo({ title, description }) {
-  // React 19 hoists these tags into <head>.
+  // React 19 hoists these tags into <head>. The canonical link tells search
+  // engines that hashtype.net is the official copy of each page.
+  const { pathname } = useLocation()
+  const url = `${siteUrl}${pathname === '/' ? '/' : pathname.replace(/\/$/, '')}`
   return (
     <>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <link rel="canonical" href={url} />
+      <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
     </>
