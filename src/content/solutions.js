@@ -83,7 +83,7 @@ export const solutions = {
       { title: 'Web Design & SEO', body: 'Websites built to be found.' },
       {
         title: 'Grant Applications',
-        body: 'Support with Enterprise Development Grant (EDG) applications to co-fund eligible projects.',
+        body: 'Support with EDGE Grant and NTUC Company Training Committee (CTC) Grant applications to co-fund eligible projects.',
       },
       {
         title: 'Demo or Site Survey',

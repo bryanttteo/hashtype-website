@@ -6,8 +6,8 @@ export const contact = {
   emailEnquiries: 'enquiries@hashtype.net',
   // One number for calls and WhatsApp.
   phone: '+65 9066 7757',
-  location: '[ADDRESS]', // or 'Singapore'
-  linkedinUrl: '[LINKEDIN_URL]',
+  location: '', // hidden for now (home office); set e.g. 'Singapore' to show it
+  linkedinUrl: 'https://www.linkedin.com/company/hashtype',
   uen: '[UEN]',
 }
 
@@ -21,6 +21,12 @@ export const brand = {
     'HashType helps businesses run leaner with AI-first automation, IoT and vision AI.',
   logoAlt: 'HashType logo',
 }
+
+// Official grant pages, linked wherever grants are mentioned.
+export const grantLinks = [
+  { label: 'EDGE Grant — Enterprise Singapore', href: 'https://www.enterprisesg.gov.sg/financial-support/edge-grant' },
+  { label: 'CTC Grant — NTUC e2i', href: 'https://www.e2i.com.sg/employers/ntuc-ctc-grant/' },
+]
 
 export const nav = [
   { label: 'Home', to: '/' },

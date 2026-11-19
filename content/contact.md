@@ -43,4 +43,7 @@ All three open `mailto:{email_enquiries}` with the subject and body from contact
 - **LinkedIn:** {linkedin_url}
 
 ## [grants-note]
-- **Body:** Ask us about grant support. The Enterprise Development Grant (EDG) can co-fund eligible projects.
+- **Body:** Ask us about grant support. The EDGE Grant and the NTUC Company Training Committee (CTC) Grant can co-fund eligible projects.
+- **Links:**
+  - EDGE Grant — Enterprise Singapore → https://www.enterprisesg.gov.sg/financial-support/edge-grant
+  - CTC Grant — NTUC e2i → https://www.e2i.com.sg/employers/ntuc-ctc-grant/

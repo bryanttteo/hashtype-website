@@ -9,8 +9,8 @@ purpose: Single source for every contact detail on the site. Replace each placeh
 |---|---|---|
 | email_enquiries | enquiries@hashtype.net (Microsoft 365 shared mailbox) | Footer, Contact, all three request buttons |
 | phone | +65 9066 7757 (calls and WhatsApp) | Footer, Contact |
-| location | [CONFIRM: ADDRESS — or "Singapore"] | Contact |
-| linkedin_url | [CONFIRM: LINKEDIN_URL] | Footer, Contact |
+| location | Hidden for now (home office) | Contact |
+| linkedin_url | https://www.linkedin.com/company/hashtype | Footer, Contact |
 | legal_name | HashType Technologies Pte Ltd | Footer copyright: "© <year> HashType Technologies Pte Ltd" |
 | uen | [CONFIRM: UEN] | Footer |
 | domain | hashtype.net | sitemap.xml, robots.txt, Open Graph tags |

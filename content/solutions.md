@@ -62,7 +62,7 @@ We design and deploy workflow automations that connect the tools you already use
 Websites built to be found.
 
 ### Grant Applications
-Support with Enterprise Development Grant (EDG) applications to co-fund eligible projects.
+Support with EDGE Grant and NTUC Company Training Committee (CTC) Grant applications to co-fund eligible projects.
 
 ### Demo or Site Survey
 See a solution working, or have us assess your site in person.
