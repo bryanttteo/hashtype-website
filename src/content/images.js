@@ -1,28 +1,10 @@
-// Alt text from content/images/images.md, word for word.
+// Alt text for photos, word for word from content/images/images.md.
 //
 // Photos are picked up automatically: save a file with the exact name below into
-// src/assets/photos/ and it appears on the site at the next build. Until then, each
-// slot shows a branded circuit graphic, so the layout never breaks.
+// src/assets/photos/ and reference that name from a content file (for example a
+// project's `image`). Until a file is there, the slot shows a branded circuit graphic.
+//
+// The Home hero, Solutions and Industries no longer use photos: they use the animated
+// circuit background, solution icons and interface sketches instead.
 
-export const imageAlt = {
-  'hero-port-cranes.jpg': 'Container port with gantry cranes at dusk',
-  'solutions-circuit.jpg': 'Close-up of an electronic circuit board',
-  'industry-logistics.jpg': 'Rows of warehouse shelving stacked with boxes',
-  'industry-manufacturing.jpg':
-    'Factory workers in hard hats walking past industrial equipment',
-  'industry-marine.jpg': 'Deck and bridge of a ship at sea',
-  'industry-industrial-services.jpg': 'Engineer working at an industrial control panel',
-  'industry-construction.jpg': 'Building site at dusk with tower cranes',
-  'industry-fnb.jpg': 'Chef preparing food in a commercial kitchen',
-}
-
-// Which line icon stands in for each photo until the photo is added.
-export const sectorForImage = {
-  'industry-logistics.jpg': 'logistics',
-  'industry-manufacturing.jpg': 'manufacturing',
-  'industry-marine.jpg': 'marine',
-  'industry-industrial-services.jpg': 'services',
-  'industry-construction.jpg': 'construction',
-  'industry-fnb.jpg': 'fnb',
-  'solutions-circuit.jpg': 'iot',
-}
+export const imageAlt = {}

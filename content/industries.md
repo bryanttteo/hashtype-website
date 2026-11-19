@@ -6,13 +6,15 @@ description: AI, IoT and vision AI for logistics, manufacturing, offshore & mari
 primary_cta: Book a site survey → /contact
 ---
 
+> Each industry shows a small animated interface sketch of what HashType would deliver. Sketches carry no figures and are labelled "Illustration".
+
 ## [intro]
 - **Heading:** Find your industry
 - **Body:** Every industry has its own bottlenecks. Here are the problems we hear most, and the solutions we'd start with.
 - **Jump links:** Supply Chain & Logistics · Manufacturing · Offshore & Marine · Industrial Services · Real Estate & Construction · Retail, F&B & Hospitality
 
 ## [industry] Supply Chain & Logistics {#supply-chain-logistics}
-- **Image:** industry-logistics.jpg
+- **Interface sketch (labelled "Illustration"):** Yard view · Live · grid of container slots being identified one by one · message: "Container identified and logged to the yard map"
 - **Problems:**
   - Stock and container movements are tracked by hand, so errors surface late.
   - Status updates mean chasing people across email and chat.
@@ -23,7 +25,7 @@ primary_cta: Book a site survey → /contact
   - Agentic Automation — AI agents that gather status updates and notify the right people.
 
 ## [industry] Manufacturing {#manufacturing}
-- **Image:** industry-manufacturing.jpg
+- **Interface sketch (labelled "Illustration"):** Machine health · Line 1 · machines: Press, CNC mill, Conveyor, Compressor · status chips: Normal / Watch · message: "Vibration rising on the compressor. Maintenance notified."
 - **Problems:**
   - Equipment issues are found after they stop the line.
   - Quality checks rely on manual inspection.
@@ -34,7 +36,7 @@ primary_cta: Book a site survey → /contact
   - Bespoke Business Applications — a production system built around your line.
 
 ## [industry] Offshore & Marine {#offshore-marine}
-- **Image:** industry-marine.jpg
+- **Interface sketch (labelled "Illustration"):** Asset integrity · All assets · assets: Pump skid A, Crane pedestal, Ballast tank, Fire main · status chips: Open finding / Action in progress / Closed
 - **Problems:**
   - Inspection findings and actions are scattered across reports and files.
   - Integrity status is hard to show to owners and auditors.
@@ -44,7 +46,7 @@ primary_cta: Book a site survey → /contact
   - Intelligence via IoT — remote monitoring of equipment and conditions.
 
 ## [industry] Industrial Services {#industrial-services}
-- **Image:** industry-industrial-services.jpg
+- **Interface sketch (labelled "Illustration"):** Job sheet · On site · steps: Isolate power, Inspect panel, Replace filter, Customer sign-off · message: "Report sent to the office. No re-keying."
 - **Problems:**
   - Job sheets, checklists and reports are still on paper.
   - Office staff re-key field data into other systems.
@@ -54,7 +56,7 @@ primary_cta: Book a site survey → /contact
   - Agentic Automation — AI agents that handle scheduling, reminders and follow-ups.
 
 ## [industry] Real Estate & Construction {#real-estate-construction}
-- **Image:** industry-construction.jpg
+- **Interface sketch (labelled "Illustration"):** Site camera · Gate 2 · detection labels: Hard hat / No hard hat · message: "Missing hard hat detected. Supervisor alerted."
 - **Problems:**
   - Site safety relies on spot checks.
   - Building conditions such as air quality and energy use aren't visible until someone complains.
@@ -65,7 +67,7 @@ primary_cta: Book a site survey → /contact
   - Digital Enablement — site records on one connected system.
 
 ## [industry] Retail, F&B & Hospitality {#retail-fnb-hospitality}
-- **Image:** industry-fnb.jpg
+- **Interface sketch (labelled "Illustration"):** Cold room · Today · temperature line with a "Safe limit" marker · message: "Chiller above safe range. Manager notified."
 - **Problems:**
   - Staff spend hours on ordering, rostering and admin.
   - Fridge and storage temperatures are logged by hand.

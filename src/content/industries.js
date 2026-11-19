@@ -10,13 +10,19 @@ export const industries = {
     heading: 'Find your industry',
     body: "Every industry has its own bottlenecks. Here are the problems we hear most, and the solutions we'd start with.",
   },
+  illustrationLabel: 'Illustration',
   problemsLabel: 'Problems',
   startLabel: "Where we'd start",
   items: [
     {
       id: 'supply-chain-logistics',
       title: 'Supply Chain & Logistics',
-      image: 'industry-logistics.jpg',
+      sketch: {
+        type: 'yard',
+        title: 'Yard view',
+        status: 'Live',
+        toast: 'Container identified and logged to the yard map',
+      },
       problems: [
         'Stock and container movements are tracked by hand, so errors surface late.',
         'Status updates mean chasing people across email and chat.',
@@ -34,7 +40,15 @@ export const industries = {
     {
       id: 'manufacturing',
       title: 'Manufacturing',
-      image: 'industry-manufacturing.jpg',
+      sketch: {
+        type: 'machines',
+        title: 'Machine health',
+        status: 'Line 1',
+        machines: ['Press', 'CNC mill', 'Conveyor', 'Compressor'],
+        normal: 'Normal',
+        watch: 'Watch',
+        toast: 'Vibration rising on the compressor. Maintenance notified.',
+      },
       problems: [
         'Equipment issues are found after they stop the line.',
         'Quality checks rely on manual inspection.',
@@ -52,7 +66,13 @@ export const industries = {
     {
       id: 'offshore-marine',
       title: 'Offshore & Marine',
-      image: 'industry-marine.jpg',
+      sketch: {
+        type: 'integrity',
+        title: 'Asset integrity',
+        status: 'All assets',
+        assets: ['Pump skid A', 'Crane pedestal', 'Ballast tank', 'Fire main'],
+        states: { open: 'Open finding', progress: 'Action in progress', closed: 'Closed' },
+      },
       problems: [
         'Inspection findings and actions are scattered across reports and files.',
         'Integrity status is hard to show to owners and auditors.',
@@ -69,7 +89,13 @@ export const industries = {
     {
       id: 'industrial-services',
       title: 'Industrial Services',
-      image: 'industry-industrial-services.jpg',
+      sketch: {
+        type: 'jobsheet',
+        title: 'Job sheet',
+        status: 'On site',
+        steps: ['Isolate power', 'Inspect panel', 'Replace filter', 'Customer sign-off'],
+        toast: 'Report sent to the office. No re-keying.',
+      },
       problems: [
         'Job sheets, checklists and reports are still on paper.',
         'Office staff re-key field data into other systems.',
@@ -89,7 +115,14 @@ export const industries = {
     {
       id: 'real-estate-construction',
       title: 'Real Estate & Construction',
-      image: 'industry-construction.jpg',
+      sketch: {
+        type: 'camera',
+        title: 'Site camera',
+        status: 'Gate 2',
+        ok: 'Hard hat',
+        missing: 'No hard hat',
+        toast: 'Missing hard hat detected. Supervisor alerted.',
+      },
       problems: [
         'Site safety relies on spot checks.',
         "Building conditions such as air quality and energy use aren't visible until someone complains.",
@@ -104,7 +137,13 @@ export const industries = {
     {
       id: 'retail-fnb-hospitality',
       title: 'Retail, F&B & Hospitality',
-      image: 'industry-fnb.jpg',
+      sketch: {
+        type: 'coldroom',
+        title: 'Cold room',
+        status: 'Today',
+        limit: 'Safe limit',
+        toast: 'Chiller above safe range. Manager notified.',
+      },
       problems: [
         'Staff spend hours on ordering, rostering and admin.',
         'Fridge and storage temperatures are logged by hand.',

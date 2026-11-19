@@ -1,9 +1,9 @@
-import Photo from '../components/Photo.jsx'
+import IndustrySketch from '../components/IndustrySketch.jsx'
 import { ClosingCta, Seo } from '../components/Ui.jsx'
 import { industries } from '../content/industries.js'
 
 export default function Industries() {
-  const { intro, items, closing, problemsLabel, startLabel } = industries
+  const { intro, items, closing, problemsLabel, startLabel, illustrationLabel } = industries
   return (
     <>
       <Seo {...industries.meta} />
@@ -29,7 +29,7 @@ export default function Industries() {
       <div className="container industry-list">
         {items.map((item, i) => (
           <section key={item.id} id={item.id} className="industry" aria-labelledby={`${item.id}-h`}>
-            <Photo name={item.image} className="industry-photo" />
+            <IndustrySketch sketch={item.sketch} label={illustrationLabel} />
             <div className="industry-body">
               <span className="label">{String(i + 1).padStart(2, '0')}</span>
               <h2 id={`${item.id}-h`}>{item.title}</h2>

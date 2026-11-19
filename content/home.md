@@ -12,7 +12,7 @@ primary_cta: Book a discovery call → /contact
 - **Body:** We don't digitise your old processes. We redesign them around what AI makes possible, then build the automation, sensors and vision systems that make them run.
 - **Primary button:** Book a discovery call → /contact
 - **Secondary link:** See our solutions → /solutions
-- **Image:** hero-port-cranes.jpg (see images.md)
+- **Background:** animated circuit traces in the logo colours (no photo)
 
 ## [outcomes]
 - **Heading:** What changes for your business

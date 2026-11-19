@@ -19,7 +19,7 @@ npm run preview   # test the production build (refresh any page to check routing
 | Approved copy (source of truth) | `content/*.md` |
 | The same copy, as data the site renders | `src/content/*.js` |
 | Contact details, domain, nav | `src/content/site.js` |
-| Photos | `src/assets/photos/` (see below) |
+| Photos (Projects only) | `src/assets/photos/` (see below) |
 | Styles and brand tokens | `src/styles.css` |
 | Pages / shared components | `src/pages/`, `src/components/` |
 | SEO files | `public/robots.txt`, `public/sitemap.xml`, `public/og-image.png` |
@@ -33,9 +33,11 @@ matching `src/content/*.js` file. Components never contain copy.
 1. **Placeholders.** Replace every `[...]` value in `src/content/site.js`, and `[DOMAIN]`
    in `index.html`, `public/robots.txt` and `public/sitemap.xml`. Check with:
    `grep -rn "\[[A-Z_]*\]" src index.html public` → should return nothing.
-2. **Photos.** Save each photo into `src/assets/photos/` under the exact name in
-   `content/images/images.md` (e.g. `industry-fnb.jpg`). It appears automatically at the
-   next build; until then a branded circuit graphic fills the slot.
+2. **Photos.** Only the Projects page uses photos. Save each into `src/assets/photos/`,
+   reference it from the project's `image` field, and add its alt text to
+   `src/content/images.js`. The Home hero, Solutions and Industries use animated
+   graphics instead (see `src/components/HeroCircuit.jsx`, `SolutionIcon.jsx` and
+   `IndustrySketch.jsx`).
 
 ## Adding a project
 

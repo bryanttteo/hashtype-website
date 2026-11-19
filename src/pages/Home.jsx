@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import markLarge from '../assets/hashtype-mark-640.webp'
-import Photo from '../components/Photo.jsx'
+import HeroCircuit from '../components/HeroCircuit.jsx'
 import { Button, ClosingCta, SectionHeading, Seo, TextLink } from '../components/Ui.jsx'
 import { home } from '../content/home.js'
 import { grantLinks } from '../content/site.js'
@@ -12,7 +12,7 @@ export default function Home() {
       <Seo {...home.meta} />
 
       <section className="hero">
-        <Photo name={hero.image} className="hero-bg" eager />
+        <HeroCircuit className="hero-bg" />
         <div className="container hero-inner">
           <div className="hero-copy">
             <p className="eyebrow">{hero.eyebrow}</p>
