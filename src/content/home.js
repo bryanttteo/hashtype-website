@@ -57,7 +57,8 @@ export const home = {
   },
   grants: {
     heading: 'Grant support',
-    body: 'We help you prepare applications for the Enterprise Development Grant (EDG), which can co-fund eligible projects.',
+    label: 'Grants',
+    body: 'We help you prepare applications for the EDGE Grant from Enterprise Singapore and the NTUC Company Training Committee (CTC) Grant, which can co-fund eligible automation and transformation projects.',
   },
   closing: {
     heading: 'Start with a short conversation',

@@ -49,5 +49,5 @@ export const contactPage = {
     },
   },
   grantsNote:
-    'Ask us about grant support. The Enterprise Development Grant (EDG) can co-fund eligible projects.',
+    'Ask us about grant support. The EDGE Grant and the NTUC Company Training Committee (CTC) Grant can co-fund eligible projects.',
 }

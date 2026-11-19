@@ -49,8 +49,12 @@ Keep inspections, findings and actions in one place, with a clear record of who 
 - **Link:** Find your industry → /industries
 
 ## [grants]
+- **Label:** Grants
 - **Heading:** Grant support
-- **Body:** We help you prepare applications for the Enterprise Development Grant (EDG), which can co-fund eligible projects.
+- **Body:** We help you prepare applications for the EDGE Grant from Enterprise Singapore and the NTUC Company Training Committee (CTC) Grant, which can co-fund eligible automation and transformation projects.
+- **Links:**
+  - EDGE Grant — Enterprise Singapore → https://www.enterprisesg.gov.sg/financial-support/edge-grant
+  - CTC Grant — NTUC e2i → https://www.e2i.com.sg/employers/ntuc-ctc-grant/
 
 ## [closing-cta]
 - **Heading:** Start with a short conversation

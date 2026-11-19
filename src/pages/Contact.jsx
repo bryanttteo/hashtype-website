@@ -1,6 +1,6 @@
 import { Button, Seo } from '../components/Ui.jsx'
 import { contactPage } from '../content/contact.js'
-import { contact, emailRequests, mailtoFor, telHref, whatsappHref } from '../content/site.js'
+import { contact, emailRequests, grantLinks, mailtoFor, telHref, whatsappHref } from '../content/site.js'
 
 export default function Contact() {
   const { intro, requests, nextSteps, details, grantsNote } = contactPage
@@ -13,7 +13,12 @@ export default function Contact() {
       extra: { label: details.labels.whatsappLink, href: whatsappHref(contact.phone) },
     },
     { label: details.labels.location, value: contact.location, href: null },
-    { label: details.labels.linkedin, value: contact.linkedinUrl, href: contact.linkedinUrl, external: true },
+    {
+      label: details.labels.linkedin,
+      value: contact.linkedinUrl.replace(/^https?:\/\/(www\.)?/, ''),
+      href: contact.linkedinUrl,
+      external: true,
+    },
   ].filter((r) => r.value)
 
   return (
@@ -50,7 +55,18 @@ export default function Contact() {
                 <li key={step}>{step}</li>
               ))}
             </ol>
-            <p className="grants-note">{grantsNote}</p>
+            <div className="grants-note">
+              <p>{grantsNote}</p>
+              <ul className="grant-links">
+                {grantLinks.map((g) => (
+                  <li key={g.href}>
+                    <a href={g.href} target="_blank" rel="noopener noreferrer">
+                      {g.label}&nbsp;<span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div>
             <h2 className="h-sm">{details.heading}</h2>

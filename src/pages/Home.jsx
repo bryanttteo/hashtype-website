@@ -3,6 +3,7 @@ import markLarge from '../assets/hashtype-mark-640.webp'
 import Photo from '../components/Photo.jsx'
 import { Button, ClosingCta, SectionHeading, Seo, TextLink } from '../components/Ui.jsx'
 import { home } from '../content/home.js'
+import { grantLinks } from '../content/site.js'
 
 export default function Home() {
   const { hero, outcomes, solutionsTeaser, industriesStrip, grants, closing } = home
@@ -82,10 +83,19 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="callout">
-            <span className="label">EDG</span>
+            <span className="label">{grants.label}</span>
             <div>
               <h2>{grants.heading}</h2>
               <p>{grants.body}</p>
+              <ul className="grant-links">
+                {grantLinks.map((g) => (
+                  <li key={g.href}>
+                    <a href={g.href} target="_blank" rel="noopener noreferrer">
+                      {g.label}&nbsp;<span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
