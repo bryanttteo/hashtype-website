@@ -17,9 +17,9 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link to="/" className="brand" aria-label={`${brand.name} home`}>
+        <Link to="/" className="brand" aria-label={`${brand.wordmark} home`}>
           <img src={mark} alt={brand.logoAlt} width="36" height="35" />
-          <span>{brand.name}</span>
+          <span>{brand.wordmark}</span>
         </Link>
 
         <button

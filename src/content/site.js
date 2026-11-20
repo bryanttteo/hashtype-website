@@ -16,6 +16,8 @@ export const siteUrl = 'https://hashtype.net'
 
 export const brand = {
   name: 'HashType',
+  // Shown beside the logo in the header and footer.
+  wordmark: 'HashType Technologies',
   legalName: 'HashType Technologies Pte Ltd',
   description:
     'HashType helps businesses run leaner with AI-first automation, IoT and vision AI.',

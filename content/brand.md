@@ -47,7 +47,7 @@ Signature element: the logo's mint-to-indigo gradient, used sparingly (hero glow
 ## Logo
 - File: `images/hashtype-logo.png` (transparent PNG, 1048 × 1008 px).
 - Always on black. Never on a white or light card, never recoloured, stretched or given a drop shadow.
-- Header lockup: the mark with "HashType" set in the heading font beside it.
+- Header and footer lockup: the mark with "HashType Technologies" set in the heading font beside it.
 - Minimum size: 32 px tall on screen.
 
 ## Imagery
