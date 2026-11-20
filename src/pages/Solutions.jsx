@@ -1,5 +1,6 @@
 import SolutionIcon from '../components/SolutionIcon.jsx'
-import { ClosingCta, SectionHeading, Seo } from '../components/Ui.jsx'
+import { Button, ClosingCta, SectionHeading, Seo } from '../components/Ui.jsx'
+import { mailtoFor } from '../content/site.js'
 import { solutions } from '../content/solutions.js'
 
 export default function Solutions() {
@@ -43,9 +44,17 @@ export default function Solutions() {
           <p className="lead">{applications.body}</p>
           <div className="grid grid-3">
             {applications.items.map((item) => (
-              <article key={item.title} className="card">
+              <article key={item.title} className="card demo-card">
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
+                {/* Until a demo site exists, the button asks for a demo by email. */}
+                <Button
+                  variant="outline"
+                  href={item.demoUrl || mailtoFor(`Demo request — ${item.title}`)}
+                  {...(item.demoUrl ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {applications.demoLabel}&nbsp;<span aria-hidden="true">↗</span>
+                </Button>
               </article>
             ))}
           </div>

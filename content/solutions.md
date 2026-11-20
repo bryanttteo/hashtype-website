@@ -2,7 +2,7 @@
 page: Solutions & Services
 route: /solutions
 title: Solutions & Services | HashType
-description: Bespoke apps, digital workflows, IoT, vision AI and AI agents, plus consultancy, n8n automation and grant support. Find the fit for your problem.
+description: Bespoke apps, digital workflows, IoT, vision AI and AI agents, plus consultancy, workflow automation and grant support. Find the fit for your problem.
 primary_cta: Book a demo → /contact
 ---
 
@@ -34,8 +34,9 @@ primary_cta: Book a demo → /contact
 - **How it works:** AI agents work across your tools to complete tasks, and pause for approval where you set it.
 
 ## [applications]
-- **Heading:** Business applications
-- **Body:** Ready foundations we adapt to your operation.
+- **Heading:** See it working
+- **Body:** Ready foundations we adapt to your operation. Try a live demo of each.
+- **Button on each card:** Open demo ↗ (opens the demo site; until a demo site exists, opens a demo request email: "Demo request — <application name>")
 
 ### Asset Integrity Management (AIM)
 For asset owners and service suppliers. Risk, inspections, findings, actions and integrity status in one view.
@@ -55,7 +56,7 @@ Find where AI creates real value in your business, and get a roadmap to deliver 
 ### Business Process Analysis
 We map your current workflows and pinpoint what to automate first.
 
-### Automation with n8n
+### Workflow Automation
 We design and deploy workflow automations that connect the tools you already use.
 
 ### Web Design & SEO

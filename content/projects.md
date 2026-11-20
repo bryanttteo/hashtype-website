@@ -1,62 +1,59 @@
 ---
 page: Projects
-route: /projects
+route: /projects (old /industries links redirect here, keeping their #anchors)
 nav_label: Projects
 title: Projects | HashType
-description: Completed HashType projects in AI, vision AI, IoT and automation: the problem, what we delivered, and who we delivered it with.
-primary_cta: Talk to us about your project → /contact
-note: Portfolio page. Add one [project] section per completed project. Only publish a project once the client (or the NDA) allows it, every result is verified, and every partner is credited.
+description: Completed work and typical projects across logistics, manufacturing, marine, industrial services, construction and F&B. Find your project.
+primary_cta: Book a site survey → /contact
+note: Same layout as the former Industries page. Completed projects come first, then typical projects by industry (the industry entries live in industries.md). Only add a completed project once the client (or the NDA) allows it, every result is verified, and every partner is credited.
 ---
 
 ## [intro]
-- **Heading:** Projects
-- **Body:** Work we've delivered, what it solved, and who we delivered it with.
+- **Heading:** Find your project
+- **Body:** Every business has its own bottlenecks. Here are the problems we hear most, and the solutions we'd start with.
+- **Jump links:** one per entry below, in page order
 
-## [project] Wildlife detection and alerts with vision AI {#wildlife-detection}
-- **Status:** Completed, 2026
-- **Client:** A Singapore public-sector client
-- **Sector:** Public sector · Wildlife management
-- **The problem:** Wildlife such as monkeys, wild boars, free-roaming chickens and snakes were straying into areas used by people. Staff only learned about incidents after the fact, so responses were slow and hard to coordinate.
-- **What was delivered:** Cameras with vision AI that detect and identify animals as they appear. Each detection triggers the right response automatically, from on-site deterrence to alerts for the responsible team, with every event logged for review.
-- **HashType's role:** Orchestration. We connected the vision AI detections to alerts, deterrence actions and the response workflow, so the right action happens without someone watching the screens.
-- **Delivered with:** Specialist vision AI and hardware partners.
-- **Solutions used:** Vision AI · Intelligence via IoT · Agentic Automation
-- **Image:** None at launch. Add an own project photo later, with the client's permission.
+## [labels]
+- **Illustration tag:** Illustration
+- **Default columns:** Problems · Where we'd start
+- **Group headings:** Completed projects · Typical projects by industry
 
-> Partner names: add each partner by name and role once they agree to be credited (see template).
+## [group] Completed projects
 
-## [empty-state]
-> Shown only when no project is cleared for publication.
+### [project] Wildlife Detection & Alerts {#wildlife-detection}
+- **Badge:** Completed · 2026 · Public sector
+- **Interface sketch (labelled "Illustration"):** Detection feed · Zone A · detection labels: Monkey / Wild boar · log chips: Deterrent activated / Team alerted · message: "Monkey detected. Deterrent activated and team alerted."
+- **Column labels:** The problem · What we delivered
+- **The problem:**
+  - Wildlife such as monkeys, wild boars, free-roaming chickens and snakes strayed into areas used by people.
+  - Staff only learned about incidents after the fact.
+  - Responses were slow and hard to coordinate.
+- **What we delivered:**
+  - Vision AI — cameras that detect and identify animals as they appear.
+  - Agentic Automation — each detection triggers the right response automatically, from on-site deterrence to an alert for the responsible team.
+  - Intelligence via IoT — on-site deterrent devices, with every event logged for review.
+- **Note:** Our role: orchestration, connecting detections to alerts, deterrence and the response workflow. Delivered for a Singapore public-sector client with specialist vision AI and hardware partners.
 
-- **Heading:** Our first projects are being written up
-- **Body:** We publish projects once our clients agree. In the meantime, we're happy to walk you through relevant work on a call.
+> Partner names: add each partner by name and role once they agree to be credited.
+
+## [group] Typical projects by industry
+The six industry entries from industries.md, in the same order.
 
 ## [closing-cta]
-- **Heading:** Have a project in mind?
-- **Body:** Tell us about it. We'll tell you honestly whether AI is the right fix.
-- **Primary button:** Talk to us about your project → /contact
+- **Heading:** See it on your own site
+- **Body:** We'll visit, look at how the work runs today, and show you where AI fits.
+- **Primary button:** Book a site survey → /contact
 
 ---
 
-## Template for future projects (copy, fill in, then delete this note)
+## Template for a new completed project (copy into the Completed projects group, newest first)
 
 ```
-## [project] <Outcome-led title, e.g. "Live machine health for a precision plant"> {#short-slug}
-- **Status:** Completed, <year>
-- **Client:** <Name, with permission> OR <anonymous description, e.g. "A Singapore logistics company">
-- **Logo:** <file in images/, with written permission> OR none
-- **Sector:** <one of the six industries, or other>
-- **The problem:** <1–2 sentences, the client's pain in plain words>
-- **What was delivered:** <1–2 sentences, outcome first, then the technology>
-- **HashType's role:** <what we did ourselves>
-- **Delivered with:** <partner — role> · <partner — role> (or delete if HashType delivered alone)
-- **Result:** <verified figure or observable change; delete if none>
-- **Testimonial:** "<quote>" — <name, role, company> (written permission only; delete if none)
-- **Solutions used:** <1–3 from: Bespoke Business Applications · Digital Enablement · Intelligence via IoT · Vision AI · Agentic Automation>
-- **Image:** <file in images/> with alt text added to images.md
+### [project] <Outcome-led title> {#short-slug}
+- **Badge:** Completed · <year> · <sector>
+- **Interface sketch (labelled "Illustration"):** <what the mock screen shows; no figures>
+- **Column labels:** The problem · What we delivered
+- **The problem:** 2–3 short points in the client's words
+- **What we delivered:** 1–3 of: Bespoke Business Applications · Digital Enablement · Intelligence via IoT · Vision AI · Agentic Automation — each with one line on what it did
+- **Note:** HashType's role, client description (named only with permission), partners credited by name and role once they agree
 ```
-
-## Build notes
-- Projects render as cards (stacked on mobile, side by side on laptop), newest first.
-- A project with any [CONFIRM] left is not rendered. If none render, show [empty-state].
-- Each project has its own anchor (#slug) so it can be linked directly from proposals and LinkedIn. Individual project pages can come later without changing these anchors.

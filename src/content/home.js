@@ -45,14 +45,14 @@ export const home = {
   industriesStrip: {
     heading: 'Built for the industries we know',
     list: [
-      { label: 'Supply Chain & Logistics', to: '/industries#supply-chain-logistics' },
-      { label: 'Manufacturing', to: '/industries#manufacturing' },
-      { label: 'Offshore & Marine', to: '/industries#offshore-marine' },
-      { label: 'Industrial Services', to: '/industries#industrial-services' },
-      { label: 'Real Estate & Construction', to: '/industries#real-estate-construction' },
-      { label: 'Retail, F&B & Hospitality', to: '/industries#retail-fnb-hospitality' },
+      { label: 'Supply Chain & Logistics', to: '/projects#supply-chain-logistics' },
+      { label: 'Manufacturing', to: '/projects#manufacturing' },
+      { label: 'Offshore & Marine', to: '/projects#offshore-marine' },
+      { label: 'Industrial Services', to: '/projects#industrial-services' },
+      { label: 'Real Estate & Construction', to: '/projects#real-estate-construction' },
+      { label: 'Retail, F&B & Hospitality', to: '/projects#retail-fnb-hospitality' },
     ],
-    link: { label: 'Find your industry', to: '/industries' },
+    link: { label: 'Find your project', to: '/projects' },
   },
   grants: {
     heading: 'Grant support',

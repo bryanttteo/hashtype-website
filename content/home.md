@@ -39,14 +39,14 @@ Keep inspections, findings and actions in one place, with a clear record of who 
 
 ## [industries-strip]
 - **Heading:** Built for the industries we know
-- **List (each links to its section on /industries):**
-  - Supply Chain & Logistics → /industries#supply-chain-logistics
-  - Manufacturing → /industries#manufacturing
-  - Offshore & Marine → /industries#offshore-marine
-  - Industrial Services → /industries#industrial-services
-  - Real Estate & Construction → /industries#real-estate-construction
-  - Retail, F&B & Hospitality → /industries#retail-fnb-hospitality
-- **Link:** Find your industry → /industries
+- **List (each links to its section on /projects):**
+  - Supply Chain & Logistics → /projects#supply-chain-logistics
+  - Manufacturing → /projects#manufacturing
+  - Offshore & Marine → /projects#offshore-marine
+  - Industrial Services → /projects#industrial-services
+  - Real Estate & Construction → /projects#real-estate-construction
+  - Retail, F&B & Hospitality → /projects#retail-fnb-hospitality
+- **Link:** Find your project → /projects
 
 ## [grants]
 - **Label:** Grants
