@@ -1,25 +1,21 @@
+import { useState } from 'react'
+import ContactIcon from '../components/ContactIcon.jsx'
 import { Button, Seo } from '../components/Ui.jsx'
 import { contactPage } from '../content/contact.js'
-import { contact, emailRequests, grantLinks, mailtoFor, telHref, whatsappHref } from '../content/site.js'
+import {
+  contact,
+  contactUi,
+  emailRequests,
+  grantLinks,
+  mailtoFor,
+  openLink,
+  telHref,
+  whatsappHref,
+} from '../content/site.js'
 
 export default function Contact() {
   const { intro, requests, nextSteps, details, grantsNote } = contactPage
-  const rows = [
-    { label: details.labels.email, value: contact.emailEnquiries, href: `mailto:${contact.emailEnquiries}` },
-    {
-      label: details.labels.phone,
-      value: contact.phone,
-      href: telHref(contact.phone),
-      extra: { label: details.labels.whatsappLink, href: whatsappHref(contact.phone) },
-    },
-    { label: details.labels.location, value: contact.location, href: null },
-    {
-      label: details.labels.linkedin,
-      value: contact.linkedinUrl.replace(/^https?:\/\/(www\.)?/, ''),
-      href: contact.linkedinUrl,
-      external: true,
-    },
-  ].filter((r) => r.value)
+  const [showNumber, setShowNumber] = useState(false)
 
   return (
     <>
@@ -71,28 +67,53 @@ export default function Contact() {
           <div>
             <h2 className="h-sm">{details.heading}</h2>
             <dl className="details">
-              {rows.map((r) => (
-                <div key={r.label}>
-                  <dt className="label">{r.label}</dt>
-                  <dd>
-                    {r.href ? (
-                      <a
-                        href={r.href}
-                        {...(r.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
-                        {r.value}
-                      </a>
-                    ) : (
-                      r.value
-                    )}
-                    {r.extra && (
-                      <a className="extra" href={r.extra.href} target="_blank" rel="noopener noreferrer">
-                        {r.extra.label}
-                      </a>
-                    )}
-                  </dd>
+              <div>
+                <dt className="label">{details.labels.email}</dt>
+                <dd>
+                  <ContactIcon name="email" />
+                  <a href={`mailto:${contact.emailEnquiries}`}>{contact.emailEnquiries}</a>
+                </dd>
+              </div>
+              <div>
+                <dt className="label">{details.labels.phone}</dt>
+                <dd>
+                  <ContactIcon name="phone" />
+                  {showNumber ? (
+                    <a href={telHref(contact.phone)}>{contact.phone}</a>
+                  ) : (
+                    <button type="button" className="reveal" onClick={() => setShowNumber(true)}>
+                      {contactUi.showNumber}
+                    </button>
+                  )}
+                  <span className="dd-actions">
+                    <button type="button" className="chip-btn" onClick={() => openLink(telHref(contact.phone))}>
+                      {contactUi.call}
+                    </button>
+                    <button
+                      type="button"
+                      className="chip-btn"
+                      onClick={() => openLink(whatsappHref(contact.phone, contactUi.whatsappMessage), true)}
+                    >
+                      {contactUi.whatsapp}
+                    </button>
+                  </span>
+                </dd>
+              </div>
+              {contact.location && (
+                <div>
+                  <dt className="label">{details.labels.location}</dt>
+                  <dd>{contact.location}</dd>
                 </div>
-              ))}
+              )}
+              <div>
+                <dt className="label">{details.labels.linkedin}</dt>
+                <dd>
+                  <ContactIcon name="linkedin" />
+                  <a href={contact.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                    {contact.linkedinUrl.replace(/^https?:\/\/(www\.)?/, '')}
+                  </a>
+                </dd>
+              </div>
             </dl>
           </div>
         </div>

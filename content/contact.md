@@ -38,7 +38,8 @@ All three open `mailto:{email_enquiries}` with the subject and body from contact
 ## [details]
 - **Heading:** Other ways to reach us
 - **Email:** {email_enquiries}
-- **Phone / WhatsApp:** {phone} · Message on WhatsApp
+- **Phone / WhatsApp:** "Show number" (reveals the number on click) · Call · WhatsApp
+- Each row has an animated line icon (envelope, handset, chat bubble, profile card)
 - **Location:** {location}
 - **LinkedIn:** {linkedin_url}
 
