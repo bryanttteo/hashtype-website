@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import mark from '../assets/hashtype-mark-128.png'
-import { brand, contact, nav, telHref, whatsappHref } from '../content/site.js'
+import ContactIcon from './ContactIcon.jsx'
+import { brand, contact, contactUi, nav, openLink, telHref, whatsappHref } from '../content/site.js'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -25,21 +26,34 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <ul className="footer-contact">
+        {/* Icons only: the email and number are built at the moment of the click. */}
+        <ul className="footer-icons">
           <li>
-            <a href={`mailto:${contact.emailEnquiries}`}>{contact.emailEnquiries}</a>
+            <button type="button" className="c-link" onClick={() => openLink(`mailto:${contact.emailEnquiries}`)}>
+              <ContactIcon name="email" />
+              <span>{contactUi.email}</span>
+            </button>
           </li>
           <li>
-            <a href={telHref(contact.phone)}>{contact.phone}</a>
+            <button type="button" className="c-link" onClick={() => openLink(telHref(contact.phone))}>
+              <ContactIcon name="phone" />
+              <span>{contactUi.call}</span>
+            </button>
           </li>
           <li>
-            <a href={whatsappHref(contact.phone)} target="_blank" rel="noopener noreferrer">
-              WhatsApp
-            </a>
+            <button
+              type="button"
+              className="c-link"
+              onClick={() => openLink(whatsappHref(contact.phone, contactUi.whatsappMessage), true)}
+            >
+              <ContactIcon name="whatsapp" />
+              <span>{contactUi.whatsapp}</span>
+            </button>
           </li>
           <li>
-            <a href={contact.linkedinUrl} rel="noopener noreferrer" target="_blank">
-              LinkedIn
+            <a className="c-link" href={contact.linkedinUrl} rel="noopener noreferrer" target="_blank">
+              <ContactIcon name="linkedin" />
+              <span>{contactUi.linkedin}</span>
             </a>
           </li>
         </ul>

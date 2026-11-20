@@ -1,9 +1,12 @@
+import { useRef } from 'react'
 import IndustrySketch from '../components/IndustrySketch.jsx'
+import JumpBar from '../components/JumpBar.jsx'
 import { ClosingCta, Seo } from '../components/Ui.jsx'
 import { projects } from '../content/projects.js'
 
 export default function Projects() {
   const { intro, items, closing, problemsLabel, startLabel, illustrationLabel, groups } = projects
+  const jumpRef = useRef(null)
   return (
     <>
       <Seo {...projects.meta} />
@@ -12,7 +15,7 @@ export default function Projects() {
         <div className="container">
           <h1>{intro.heading}</h1>
           <p className="lead">{intro.body}</p>
-          <nav aria-label="Projects">
+          <nav aria-label="Projects" ref={jumpRef}>
             <ul className="chip-grid jump">
               {items.map((item) => (
                 <li key={item.id}>
@@ -25,6 +28,8 @@ export default function Projects() {
           </nav>
         </div>
       </section>
+
+      <JumpBar items={items} watchRef={jumpRef} label="Projects" />
 
       <div className="container industry-list">
         {items.map((item, i) => (
