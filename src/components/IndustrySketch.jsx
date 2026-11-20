@@ -5,7 +5,7 @@ import { useInView, useReducedMotion, useTicker } from './motion.js'
 // They carry no figures and are labelled as illustrations. Animation pauses when the
 // sketch is off screen; with reduced motion each shows its finished state.
 
-const RATE = { yard: 1100, machines: 900, integrity: 1600, jobsheet: 900, camera: 1200, coldroom: 80 }
+const RATE = { wildlife: 1300, yard: 1100, machines: 900, integrity: 1600, jobsheet: 900, camera: 1200, coldroom: 80 }
 
 function Toast({ show, warn, children }) {
   return (
@@ -178,7 +178,74 @@ function ColdRoom({ s, tick }) {
   )
 }
 
-const VIEWS = { yard: Yard, machines: Machines, integrity: Integrity, jobsheet: JobSheet, camera: Camera, coldroom: ColdRoom }
+/* Completed project: wildlife detection with automatic response */
+function Wildlife({ s, tick }) {
+  const phase = tick === null ? 4 : tick % 7
+  const boxed = phase >= 1
+  const acted = phase >= 2
+  const logged = phase >= 3
+  return (
+    <>
+      <svg className={`sk-camera ${tick === null ? '' : 'is-moving'}`} viewBox="0 0 300 140" aria-hidden="true">
+        <rect x="0.5" y="0.5" width="299" height="139" rx="6" className="sk-frame" />
+        <rect x="24" y="78" width="96" height="38" className="sk-wall" />
+        <path d="M0 116h300" className="sk-ground" />
+        <path d="M12 12h14M12 12v14M288 12h-14M288 12v14M12 128h14M12 128v-14M288 128h-14M288 128v-14" className="sk-corner" />
+        <circle cx="270" cy="22" r="3" className="sk-rec" />
+        {/* monkey sitting on the wall */}
+        <g transform="translate(72 0)">
+          <circle cx="0" cy="44" r="8" className="sk-animal-fill" />
+          <circle cx="-8" cy="40" r="3.5" className="sk-animal-fill" />
+          <circle cx="8" cy="40" r="3.5" className="sk-animal-fill" />
+          <ellipse cx="0" cy="64" rx="10" ry="13" className="sk-animal-fill" />
+          <path d="M9 72c14 4 18-10 9-16" className="sk-tail" />
+          {boxed && (
+            <g className="is-warn">
+              <rect x="-18" y="30" width="40" height="50" rx="3" className="sk-bbox" />
+              <rect x="-18" y="16" width={s.monkey.length * 6.2 + 10} height="13" rx="2" className="sk-tag" />
+              <text x="-13" y="26" className="sk-tag-text">{s.monkey}</text>
+            </g>
+          )}
+        </g>
+        {/* wild boar at the edge */}
+        <g transform="translate(212 0)">
+          <ellipse cx="0" cy="98" rx="28" ry="13" className="sk-animal-fill" />
+          <path d="M24 92l16 3-2 8-14 2z" className="sk-animal-fill" />
+          <path d="M-12 84l-4-6M-6 84l2-7" className="sk-legs" />
+          <path d="M-18 108v8M-8 109v7M8 109v7M18 108v8" className="sk-legs" />
+          {boxed && (
+            <>
+              <rect x="-34" y="78" width="80" height="40" rx="3" className="sk-bbox" />
+              <rect x="-34" y="64" width={s.boar.length * 6.2 + 10} height="13" rx="2" className="sk-tag" />
+              <text x="-29" y="74" className="sk-tag-text">{s.boar}</text>
+            </>
+          )}
+        </g>
+        {acted && (
+          <g className="sk-ripple">
+            <circle cx="72" cy="56" r="30" />
+            <circle cx="72" cy="56" r="44" />
+          </g>
+        )}
+      </svg>
+      <div className="sk-rows">
+        <div className={`sk-row sk-log ${logged ? 'is-in' : ''}`}>
+          <span className="sk-name">{s.monkey}</span>
+          <span className="sk-chip is-progress">{s.deterrent}</span>
+        </div>
+        <div className={`sk-row sk-log ${logged ? 'is-in' : ''}`}>
+          <span className="sk-name">{s.boar}</span>
+          <span className="sk-chip is-closed">{s.alerted}</span>
+        </div>
+      </div>
+      <Toast show={acted} warn>
+        {s.toast}
+      </Toast>
+    </>
+  )
+}
+
+const VIEWS = { wildlife: Wildlife, yard: Yard, machines: Machines, integrity: Integrity, jobsheet: JobSheet, camera: Camera, coldroom: ColdRoom }
 
 export default function IndustrySketch({ sketch, label }) {
   const ref = useRef(null)

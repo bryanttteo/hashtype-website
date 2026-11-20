@@ -4,7 +4,7 @@ export const solutions = {
   meta: {
     title: 'Solutions & Services | HashType',
     description:
-      'Bespoke apps, digital workflows, IoT, vision AI and AI agents, plus consultancy, n8n automation and grant support. Find the fit for your problem.',
+      'Bespoke apps, digital workflows, IoT, vision AI and AI agents, plus consultancy, workflow automation and grant support. Find the fit for your problem.',
   },
   intro: {
     heading: 'Match your problem to a solution',
@@ -50,17 +50,24 @@ export const solutions = {
     ],
   },
   applications: {
-    heading: 'Business applications',
-    body: 'Ready foundations we adapt to your operation.',
+    heading: 'See it working',
+    body: 'Ready foundations we adapt to your operation. Try a live demo of each.',
+    demoLabel: 'Open demo',
     items: [
       {
         title: 'Asset Integrity Management (AIM)',
         body: 'For asset owners and service suppliers. Risk, inspections, findings, actions and integrity status in one view.',
+        demoUrl: '', // e.g. https://aim.demo.hashtype.net
       },
-      { title: 'CRM', body: 'Lightweight customer and pipeline management, without the bloat.' },
+      {
+        title: 'CRM',
+        body: 'Lightweight customer and pipeline management, without the bloat.',
+        demoUrl: '',
+      },
       {
         title: 'Monitoring Platforms',
         body: 'Dashboards for equipment, environmental and operational data.',
+        demoUrl: '',
       },
     ],
   },
@@ -76,7 +83,7 @@ export const solutions = {
         body: 'We map your current workflows and pinpoint what to automate first.',
       },
       {
-        title: 'Automation with n8n',
+        title: 'Workflow Automation',
         body: 'We design and deploy workflow automations that connect the tools you already use.',
       },
       { title: 'Web Design & SEO', body: 'Websites built to be found.' },

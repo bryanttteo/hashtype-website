@@ -1,6 +1,6 @@
 ---
-page: Industries
-route: /industries
+page: Industries (shown on the Projects page, under "Typical projects by industry")
+route: none of its own; /industries redirects to /projects
 title: Industries We Serve | HashType
 description: AI, IoT and vision AI for logistics, manufacturing, offshore & marine, industrial services, construction and F&B. Find your industry.
 primary_cta: Book a site survey → /contact

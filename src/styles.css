@@ -933,6 +933,56 @@ main > :last-child {
   }
 }
 
+/* Projects: groups, badge, note */
+.industry-group {
+  display: grid;
+  gap: 16px;
+}
+.group-label {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.industry-group:first-child .group-label {
+  margin-top: 0;
+}
+.industry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.industry-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mint);
+  border: 1px solid rgba(126, 240, 193, 0.5);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+.industry-note {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 70ch;
+}
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.demo-card p {
+  flex: 1;
+  margin-bottom: 8px;
+}
+.demo-card .btn {
+  align-self: flex-start;
+}
+
 /* Interface sketches */
 .sketch {
   position: relative;
@@ -1206,6 +1256,46 @@ main > :last-child {
   stroke: var(--mint);
   stroke-width: 2;
   stroke-linejoin: round;
+}
+
+.sk-wall {
+  fill: #121a20;
+  stroke: #26313a;
+}
+.sk-animal-fill {
+  fill: #4a5f6d;
+}
+.sk-tail,
+.sk-legs {
+  fill: none;
+  stroke: #4a5f6d;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.sk-ripple circle {
+  fill: none;
+  stroke: #f2c14e;
+  stroke-width: 1.2;
+  opacity: 0.6;
+}
+.is-moving .sk-ripple circle {
+  animation: sk-ripple 1.3s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.is-moving .sk-ripple circle:nth-child(2) {
+  animation-delay: 0.4s;
+}
+@keyframes sk-ripple {
+  from { transform: scale(0.6); opacity: 0.8; }
+  to { transform: scale(1.15); opacity: 0; }
+}
+.sk-log {
+  opacity: 0.35;
+  transition: opacity 0.4s;
+}
+.sk-log.is-in {
+  opacity: 1;
 }
 
 /* ---------- Projects ---------- */

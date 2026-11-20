@@ -33,7 +33,6 @@ export const grantLinks = [
 export const nav = [
   { label: 'Home', to: '/' },
   { label: 'Solutions', to: '/solutions' },
-  { label: 'Industries', to: '/industries' },
   { label: 'Projects', to: '/projects' },
   { label: 'Contact', to: '/contact' },
 ]

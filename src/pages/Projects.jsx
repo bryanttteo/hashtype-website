@@ -1,21 +1,9 @@
-import Photo from '../components/Photo.jsx'
+import IndustrySketch from '../components/IndustrySketch.jsx'
 import { ClosingCta, Seo } from '../components/Ui.jsx'
 import { projects } from '../content/projects.js'
 
-function Row({ label, children }) {
-  if (!children) return null
-  return (
-    <div className="project-row">
-      <dt className="label">{label}</dt>
-      <dd>{children}</dd>
-    </div>
-  )
-}
-
 export default function Projects() {
-  const { intro, labels, emptyState, closing } = projects
-  const published = projects.items.filter((p) => p.publish)
-
+  const { intro, items, closing, problemsLabel, startLabel, illustrationLabel, groups } = projects
   return (
     <>
       <Seo {...projects.meta} />
@@ -24,51 +12,60 @@ export default function Projects() {
         <div className="container">
           <h1>{intro.heading}</h1>
           <p className="lead">{intro.body}</p>
+          <nav aria-label="Projects">
+            <ul className="chip-grid jump">
+              {items.map((item) => (
+                <li key={item.id}>
+                  <a className="chip" href={`#${item.id}`}>
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </section>
 
-      <section className="section section-tight">
-        <div className="container">
-          {published.length === 0 ? (
-            <div className="card empty-state">
-              <h2>{emptyState.heading}</h2>
-              <p>{emptyState.body}</p>
-            </div>
-          ) : (
-            <div className="project-grid">
-              {published.map((p) => (
-                <article key={p.id} id={p.id} className="project">
-                  {p.image && <Photo name={p.image} className="project-photo" />}
-                  <div className="project-head">
-                    <span className="status">{p.status}</span>
-                    <h2>{p.title}</h2>
+      <div className="container industry-list">
+        {items.map((item, i) => (
+          <div key={item.id} className="industry-group">
+            {(i === 0 || items[i - 1].group !== item.group) && (
+              <h2 className="group-label label">{groups[item.group]}</h2>
+            )}
+            <section id={item.id} className="industry" aria-labelledby={`${item.id}-h`}>
+              <IndustrySketch sketch={item.sketch} label={illustrationLabel} />
+              <div className="industry-body">
+                <div className="industry-meta">
+                  <span className="label">{String(i + 1).padStart(2, '0')}</span>
+                  {item.badge && <span className="industry-badge">{item.badge}</span>}
+                </div>
+                <h2 id={`${item.id}-h`}>{item.title}</h2>
+                <div className="industry-cols">
+                  <div>
+                    <h3 className="label">{item.problemsLabel ?? problemsLabel}</h3>
+                    <ul className="dash-list">
+                      {item.problems.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <dl>
-                    <Row label={labels.client}>{p.client}</Row>
-                    <Row label={labels.sector}>{p.sector}</Row>
-                    <Row label={labels.problem}>{p.problem}</Row>
-                    <Row label={labels.delivered}>{p.delivered}</Row>
-                    <Row label={labels.role}>{p.role}</Row>
-                    <Row label={labels.partners}>{p.partners}</Row>
-                    <Row label={labels.result}>{p.result}</Row>
-                  </dl>
-                  {p.testimonial && (
-                    <blockquote className="testimonial">
-                      <p>“{p.testimonial.quote}”</p>
-                      <footer>{p.testimonial.by}</footer>
-                    </blockquote>
-                  )}
-                  <ul className="tags" aria-label={labels.solutions}>
-                    {p.solutions.map((s) => (
-                      <li key={s}>{s}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+                  <div>
+                    <h3 className="label">{item.startLabel ?? startLabel}</h3>
+                    <ul className="fit-list">
+                      {item.start.map((s) => (
+                        <li key={s.solution}>
+                          <strong>{s.solution}</strong> — {s.detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                {item.note && <p className="industry-note">{item.note}</p>}
+              </div>
+            </section>
+          </div>
+        ))}
+      </div>
 
       <ClosingCta {...closing} />
     </>
