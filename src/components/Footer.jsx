@@ -8,9 +8,9 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Link to="/" className="brand" aria-label={`${brand.name} home`}>
+          <Link to="/" className="brand" aria-label={`${brand.wordmark} home`}>
             <img src={mark} alt={brand.logoAlt} width="32" height="31" />
-            <span>{brand.name}</span>
+            <span>{brand.wordmark}</span>
           </Link>
           <p>{brand.description}</p>
         </div>
