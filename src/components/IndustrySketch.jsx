@@ -5,7 +5,7 @@ import { useInView, useReducedMotion, useTicker } from './motion.js'
 // They carry no figures and are labelled as illustrations. Animation pauses when the
 // sketch is off screen; with reduced motion each shows its finished state.
 
-const RATE = { wildlife: 1300, yard: 1100, machines: 900, integrity: 1600, jobsheet: 900, camera: 1200, coldroom: 80 }
+const RATE = { app: 1200, forms: 900, sensors: 900, inspection: 1300, agent: 1100, wildlife: 1300, yard: 1100, machines: 900, integrity: 1600, jobsheet: 900, camera: 1200, coldroom: 80 }
 
 function Toast({ show, warn, children }) {
   return (
@@ -245,7 +245,183 @@ function Wildlife({ s, tick }) {
   )
 }
 
-const VIEWS = { wildlife: Wildlife, yard: Yard, machines: Machines, integrity: Integrity, jobsheet: JobSheet, camera: Camera, coldroom: ColdRoom }
+/* ---------- Solutions ---------- */
+
+/* Bespoke Business Applications: a job moves on, AI suggests who should take it */
+function AppSketch({ s, tick }) {
+  const phase = tick === null ? 3 : tick % 7
+  const first = phase >= 4 ? 'done' : phase >= 2 ? 'progress' : 'new'
+  const states = [first, 'progress', 'new', 'done']
+  return (
+    <>
+      <div className="sk-rows">
+        {s.jobs.map((job, i) => (
+          <div className={`sk-row ${i === 0 && phase >= 1 ? 'is-focus' : ''}`} key={job}>
+            <span className="sk-name">{job}</span>
+            <span className={`sk-chip is-${states[i] === 'new' ? 'open' : states[i] === 'done' ? 'closed' : 'progress'}`}>
+              {s.states[states[i]]}
+            </span>
+          </div>
+        ))}
+      </div>
+      <Toast show={phase >= 1}>{s.toast}</Toast>
+    </>
+  )
+}
+
+/* Digital Enablement: a paper checklist becomes a signed tablet form */
+function FormsSketch({ s, tick }) {
+  const phase = tick === null ? 6 : tick % 8
+  const done = Math.min(s.steps.length, phase)
+  return (
+    <>
+      <div className="sk-forms">
+        <div className={`sk-paper ${phase >= 1 ? 'is-faded' : ''}`} aria-hidden="true">
+          <span className="sk-paper-label">{s.paper}</span>
+          <svg viewBox="0 0 60 70">
+            <path d="M6 4h36l12 12v50H6z" className="sk-paper-sheet" />
+            <path d="M42 4v12h12M14 26h30M14 36h30M14 46h22" className="sk-paper-lines" />
+          </svg>
+        </div>
+        <ul className="sk-steps">
+          {s.steps.map((step, i) => (
+            <li key={step} className={i < done ? 'is-done' : ''}>
+              <span className="sk-box" />
+              {step}
+            </li>
+          ))}
+          <li className={`sk-sign ${phase >= 4 ? 'is-done' : ''}`}>
+            <svg viewBox="0 0 120 24" aria-hidden="true">
+              <path d="M4 18c8-12 14-12 16 0s10-14 18-6 8 6 14-2 12-6 18 2 10 4 18-4 14 0 28 4" pathLength="1" />
+            </svg>
+            <span>{s.signature}</span>
+          </li>
+        </ul>
+      </div>
+      <Toast show={phase >= 5}>{s.toast}</Toast>
+    </>
+  )
+}
+
+/* Intelligence via IoT: three live tiles, one drifts into "watch" */
+function spark(seed, t, rising) {
+  const pts = []
+  for (let i = 0; i <= 12; i++) {
+    const x = i * 5
+    let y = 14 + Math.sin(i * 0.9 + seed + t * 0.6) * 4
+    if (rising) y -= Math.max(0, i - 6) * 1.6
+    pts.push(`${x},${y.toFixed(1)}`)
+  }
+  return pts.join(' ')
+}
+function SensorsSketch({ s, tick }) {
+  const phase = tick === null ? 5 : tick % 8
+  const watch = phase >= 3
+  const t = tick ?? 2
+  return (
+    <>
+      <div className="sk-tiles">
+        {s.tiles.map((name, i) => {
+          const isWatch = i === 1 && watch
+          return (
+            <div className={`sk-tile ${isWatch ? 'is-watch' : ''}`} key={name}>
+              <span className="sk-tile-name">{name}</span>
+              <svg viewBox="0 0 60 28" preserveAspectRatio="none" aria-hidden="true">
+                <polyline points={spark(i * 2, t, isWatch)} />
+              </svg>
+              <span className={`sk-chip ${isWatch ? 'is-progress' : 'is-closed'}`}>{isWatch ? s.watch : s.normal}</span>
+            </div>
+          )
+        })}
+      </div>
+      <Toast show={watch} warn>
+        {s.toast}
+      </Toast>
+    </>
+  )
+}
+
+/* Vision AI: items on a conveyor are checked; one is flagged and set aside */
+function InspectionSketch({ s, tick }) {
+  const phase = tick === null ? 3 : tick % 6
+  const boxed = phase >= 1
+  const aside = phase >= 2
+  const items = [40, 100, 160, 220]
+  return (
+    <>
+      <svg className={`sk-camera ${tick === null ? '' : 'is-moving'}`} viewBox="0 0 300 140" aria-hidden="true">
+        <rect x="0.5" y="0.5" width="299" height="139" rx="6" className="sk-frame" />
+        <path d="M12 12h14M12 12v14M288 12h-14M288 12v14M12 128h14M12 128v-14M288 128h-14M288 128v-14" className="sk-corner" />
+        <circle cx="270" cy="22" r="3" className="sk-rec" />
+        <g className="sk-belt">
+          <rect x="10" y="78" width="280" height="10" rx="5" className="sk-wall" />
+          <path d="M20 83h4M44 83h4M68 83h4M92 83h4M116 83h4M140 83h4M164 83h4M188 83h4M212 83h4M236 83h4M260 83h4" className="sk-ground" />
+        </g>
+        {items.map((x, i) => {
+          const defect = i === 2
+          const y = defect && aside ? 104 : 58
+          return (
+            <g key={x} className={`sk-item ${defect ? 'is-warn' : ''}`} style={{ transform: `translate(${x}px, ${y}px)` }}>
+              <rect x="-14" y="0" width="28" height="20" rx="3" className="sk-animal-fill" />
+              {defect && <path d="M-8 6l10 8" className="sk-scratch" />}
+              {boxed && (
+                <>
+                  <rect x="-19" y="-5" width="38" height="30" rx="3" className="sk-bbox" />
+                  <rect x="-19" y="-19" width={(defect ? s.defect : s.ok).length * 6.2 + 10} height="13" rx="2" className="sk-tag" />
+                  <text x="-14" y="-9" className="sk-tag-text">{defect ? s.defect : s.ok}</text>
+                </>
+              )}
+            </g>
+          )
+        })}
+      </svg>
+      <Toast show={aside} warn>
+        {s.toast}
+      </Toast>
+    </>
+  )
+}
+
+/* Agentic Automation: an AI agent works step by step, then waits for a person */
+function AgentSketch({ s, tick }) {
+  const phase = tick === null ? 6 : tick % 9
+  const done = Math.min(s.steps.length, phase)
+  const waiting = phase >= 3 && phase < 5
+  const approved = phase >= 5
+  const sent = phase >= 6
+  return (
+    <>
+      <ul className="sk-steps sk-agent">
+        {s.steps.map((step, i) => (
+          <li key={step} className={i < done ? 'is-done' : i === done ? 'is-active' : ''}>
+            <span className="sk-box" />
+            {step}
+          </li>
+        ))}
+        <li className={`sk-approval ${approved ? 'is-done' : waiting ? 'is-active' : ''}`}>
+          <span className="sk-box" />
+          <span className="sk-name">{s.approval}</span>
+          {waiting && (
+            <span className="sk-approve-btns">
+              <span className="sk-mini is-primary">{s.approve}</span>
+              <span className="sk-mini">{s.reject}</span>
+            </span>
+          )}
+          {!waiting && (
+            <span className={`sk-chip ${approved ? 'is-closed' : 'is-progress'}`}>{approved ? s.approved : s.waiting}</span>
+          )}
+        </li>
+        <li className={sent ? 'is-done' : ''}>
+          <span className="sk-box" />
+          {s.final}
+        </li>
+      </ul>
+      <Toast show={sent}>{s.toast}</Toast>
+    </>
+  )
+}
+
+const VIEWS = { app: AppSketch, forms: FormsSketch, sensors: SensorsSketch, inspection: InspectionSketch, agent: AgentSketch, wildlife: Wildlife, yard: Yard, machines: Machines, integrity: Integrity, jobsheet: JobSheet, camera: Camera, coldroom: ColdRoom }
 
 export default function IndustrySketch({ sketch, label }) {
   const ref = useRef(null)

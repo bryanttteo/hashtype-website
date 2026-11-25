@@ -1,4 +1,4 @@
-import SolutionIcon from '../components/SolutionIcon.jsx'
+import IndustrySketch from '../components/IndustrySketch.jsx'
 import { Button, ClosingCta, SectionHeading, Seo } from '../components/Ui.jsx'
 import { mailtoFor } from '../content/site.js'
 import { solutions } from '../content/solutions.js'
@@ -31,7 +31,9 @@ export default function Solutions() {
                     {item.how}
                   </p>
                 </div>
-                <SolutionIcon icon={item.id} />
+                <div className="solution-sketch">
+                  <IndustrySketch sketch={item.sketch} label={solutions.illustrationLabel} />
+                </div>
               </article>
             ))}
           </div>
