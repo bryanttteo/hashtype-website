@@ -6,6 +6,7 @@ export const solutions = {
     description:
       'Bespoke apps, digital workflows, IoT, vision AI and AI agents, plus consultancy, workflow automation and grant support. Find the fit for your problem.',
   },
+  illustrationLabel: 'Illustration',
   intro: {
     heading: 'Match your problem to a solution',
     body: "Each solution starts with the outcome you need. Pick the one that sounds like your problem, or book a demo and we'll work it out with you.",
@@ -15,6 +16,14 @@ export const solutions = {
     items: [
       {
         id: 'bespoke',
+        sketch: {
+          type: 'app',
+          title: 'Jobs',
+          status: 'This week',
+          jobs: ['Pump service', 'Panel upgrade', 'Site survey', 'Filter replacement'],
+          states: { new: 'New', progress: 'In progress', done: 'Done' },
+          toast: 'Suggested: assign to Team B',
+        },
         title: 'Bespoke Business Applications',
         outcome:
           'Software that fits how your business actually runs, instead of forcing your team to work around an off-the-shelf tool.',
@@ -22,6 +31,15 @@ export const solutions = {
       },
       {
         id: 'digital-enablement',
+        sketch: {
+          type: 'forms',
+          title: 'Daily inspection',
+          status: 'Tablet',
+          paper: 'Paper',
+          steps: ['Fire exits clear', 'Extinguishers checked', 'First-aid kit stocked'],
+          signature: 'Signed',
+          toast: 'Synced to the office',
+        },
         title: 'Digital Enablement',
         outcome:
           'No more chasing paper forms and spreadsheet versions. Everyone works from the same live information.',
@@ -29,6 +47,15 @@ export const solutions = {
       },
       {
         id: 'iot',
+        sketch: {
+          type: 'sensors',
+          title: 'Pump room',
+          status: 'Live',
+          tiles: ['Temperature', 'Vibration', 'Power'],
+          normal: 'Normal',
+          watch: 'Watch',
+          toast: 'Pump 2 vibration rising. Maintenance notified.',
+        },
         title: 'Intelligence via IoT',
         outcome:
           "Know what's happening on your equipment and sites in real time, and get alerted before small problems become costly ones.",
@@ -36,12 +63,33 @@ export const solutions = {
       },
       {
         id: 'vision-ai',
+        sketch: {
+          type: 'inspection',
+          title: 'Line camera',
+          status: 'Packing line',
+          ok: 'OK',
+          defect: 'Scratch',
+          toast: 'Defect caught before packing',
+        },
         title: 'Vision AI',
         outcome: "Cameras that watch for what matters, so people don't have to stare at screens.",
         how: 'Camera-based detection, inspection and monitoring, with alerts when something needs attention.',
       },
       {
         id: 'agentic-automation',
+        sketch: {
+          type: 'agent',
+          title: 'AI agent',
+          status: 'Purchase request',
+          steps: ['Read supplier email', 'Draft purchase order', 'Check budget'],
+          approval: 'Manager approval',
+          waiting: 'Waiting',
+          approve: 'Approve',
+          reject: 'Reject',
+          approved: 'Approved',
+          final: 'Order sent',
+          toast: 'Order sent to supplier',
+        },
         title: 'Agentic Automation',
         outcome:
           'Multi-step tasks handled end to end, with your people approving the decisions that need a human.',
