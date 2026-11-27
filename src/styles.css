@@ -479,33 +479,27 @@ main > :last-child {
   object-fit: cover;
 }
 
+/* ---------- Site background (circuit traces behind every page) ---------- */
+.site-circuit {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---------- Home: hero ---------- */
 .hero {
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  border: 0;
-  border-radius: 0;
-  background: #000;
-}
-.hero-circuit canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.84) 40%, rgba(0, 0, 0, 0.2) 100%),
-    linear-gradient(0deg, #000 0%, transparent 35%);
 }
 .hero-inner {
   position: relative;
