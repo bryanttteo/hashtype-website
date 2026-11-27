@@ -2,8 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
 // Site-wide background: three depths of circuit traces in the logo's mint-to-indigo
-// gradient, fixed behind every page. Full strength at the top of the page (behind the
-// hero or page intro), fading to a faint, slower layer as you scroll down. Layers move
+// gradient, fixed behind every page at one even, faint strength. Layers move
 // at different speeds with the scroll (and, with a mouse, the pointer), and a mint
 // signal pulse runs along a trace now and then. With reduced motion the traces hold
 // still and only redraw on scroll. Purely decorative.
@@ -13,10 +12,8 @@ const INDIGO = [84, 102, 174]
 const mix = (t, a) =>
   `rgba(${MINT.map((m, i) => Math.round(m + (INDIGO[i] - m) * t)).join(',')},${a})`
 
-// How faint the traces get once you are past the top section (1 = full strength).
-const FAINT = 0.28
-// Other pages' intros are short, so text sits on the traces sooner: start them lower.
-const INTRO_PEAK = 0.65
+// One even strength for the traces on every page, top to bottom (1 = the old hero's strength).
+const STRENGTH = 0.4
 
 function seeded(seed) {
   let h = seed >>> 0 || 1
@@ -105,14 +102,6 @@ export default function SiteCircuit() {
     // The page's top section: the Home hero or another page's intro.
     const topSection = () => document.querySelector('main > section:first-child')
 
-    function strength() {
-      const top = topSection()
-      const span = Math.max(top ? top.offsetHeight : 0, h * 0.7)
-      const peak = top && top.classList.contains('hero') ? 1 : INTRO_PEAK
-      const t = Math.min(1, Math.max(0, (window.scrollY - span * 0.35) / (span * 0.9)))
-      return peak - t * (peak - FAINT)
-    }
-
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2)
       w = window.innerWidth
@@ -128,7 +117,7 @@ export default function SiteCircuit() {
     function draw(now) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, w, h)
-      const k = strength()
+      const k = STRENGTH
       const scroll = reduced ? 0 : window.scrollY
       pointer.x += (pointer.tx - pointer.x) * 0.06
       pointer.y += (pointer.ty - pointer.y) * 0.06
@@ -167,7 +156,7 @@ export default function SiteCircuit() {
               const f = (now - p.start) / p.dur
               for (let j = 0; j < 8; j++) {
                 const [x, y] = pointAlong(p.tr, Math.max(0, f * p.tr.length - j * 6))
-                ctx.fillStyle = `rgba(126,240,193,${(1 - j / 8) * 0.9 * Math.max(0.35, k)})`
+                ctx.fillStyle = `rgba(126,240,193,${(1 - j / 8) * 0.9 * Math.max(0.5, k)})`
                 ctx.beginPath()
                 ctx.arc(x, y, j === 0 ? 2.6 : 1.8, 0, Math.PI * 2)
                 ctx.fill()
@@ -196,11 +185,11 @@ export default function SiteCircuit() {
       }
 
       if (!reduced && layers[2]) {
-        // Pulses: frequent at the top, rarer once the traces are faint.
+        // Pulses: a steady, unhurried rhythm.
         if (now > nextPulse && layers[2].traces.length) {
           const tr = layers[2].traces[Math.floor(Math.random() * layers[2].traces.length)]
           pulses.push({ tr, start: now, dur: 1400 + Math.random() * 900 })
-          nextPulse = now + (700 + (1 - k) * 4000) * (0.6 + Math.random() * 0.8)
+          nextPulse = now + 2200 * (0.6 + Math.random() * 0.8)
         }
         pulses = pulses.filter((p) => now - p.start < p.dur)
       }
