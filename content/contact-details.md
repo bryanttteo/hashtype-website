@@ -9,7 +9,7 @@ purpose: Single source for every contact detail on the site. Replace each placeh
 |---|---|---|
 | email_enquiries | enquiries@hashtype.net (Microsoft 365 shared mailbox; stored scrambled in `src/content/site.js`) | Footer, Contact, all three request buttons |
 | phone | Not written here. One number for calls and WhatsApp, stored scrambled in `src/content/site.js` (see the note there on how to change it). | Footer (Call and WhatsApp icons), Contact ("Show number", Call, WhatsApp), floating WhatsApp button |
-| location | Hidden for now (home office) | Contact |
+| location | 2 Venture Drive, #11-03, Vision Exchange, Singapore 608526 (shown as two lines, labelled "Address") | Contact page only, under "Other ways to reach us"; not in the footer |
 | linkedin_url | https://www.linkedin.com/company/hashtype | Footer, Contact |
 | legal_name | HashType Technologies Pte Ltd | Footer copyright: "© <year> HashType Technologies Pte Ltd" |
 | uen | 202654815K | Footer, beside "© <year> HashType Technologies Pte Ltd" |

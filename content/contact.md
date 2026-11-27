@@ -40,7 +40,7 @@ All three open `mailto:{email_enquiries}` with the subject and body from contact
 - **Email:** {email_enquiries}
 - **Phone / WhatsApp:** "Show number" (reveals the number on click) · Call · WhatsApp
 - Each row has an animated line icon (envelope, handset, chat bubble, profile card)
-- **Location:** {location}
+- **Address:** {location} (with a map-pin icon)
 - **LinkedIn:** {linkedin_url}
 
 ## [grants-note]
