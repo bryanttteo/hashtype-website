@@ -1594,6 +1594,7 @@ main > :last-child {
 :is(.c-link:hover, .c-link:focus-visible, .details > div:hover, .float-btn:hover, .float-btn:focus-visible) .ci-dot2 { animation: ci-dot 1.2s ease 0.2s infinite; }
 :is(.c-link:hover, .c-link:focus-visible, .details > div:hover, .float-btn:hover, .float-btn:focus-visible) .ci-dot3 { animation: ci-dot 1.2s ease 0.4s infinite; }
 :is(.c-link:hover, .c-link:focus-visible, .details > div:hover) .ci-link { animation: ci-connect 0.8s ease forwards; }
+:is(.c-link:hover, .c-link:focus-visible, .details > div:hover) .ci-pin { animation: ci-hop 0.9s ease; }
 
 /* Touch screens: play once when the icon scrolls into view */
 @media (hover: none) {
@@ -1606,6 +1607,7 @@ main > :last-child {
   .ci.is-seen .ci-dot2 { animation: ci-dot 1.2s ease 0.4s 2; }
   .ci.is-seen .ci-dot3 { animation: ci-dot 1.2s ease 0.6s 2; }
   .ci.is-seen .ci-link { animation: ci-connect 0.8s ease 0.2s forwards; }
+  .ci.is-seen .ci-pin { animation: ci-hop 0.9s ease 0.2s; }
 }
 @keyframes ci-letter {
   0% { transform: translateY(0); }
@@ -1630,6 +1632,18 @@ main > :last-child {
 @keyframes ci-dot {
   0%, 100% { opacity: 0.35; transform: translateY(0); }
   40% { opacity: 1; transform: translateY(-1.2px); }
+}
+@keyframes ci-hop {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-3px); }
+  55% { transform: translateY(0); }
+  70% { transform: translateY(-1px); }
+}
+.addr {
+  font-style: normal;
+  white-space: pre-line;
+  line-height: 1.5;
+  padding-block: 8px;
 }
 @keyframes ci-connect {
   to { stroke-dashoffset: 0; }

@@ -44,7 +44,7 @@ export const contactPage = {
       email: 'Email',
       phone: 'Phone / WhatsApp',
       whatsappLink: 'Message on WhatsApp',
-      location: 'Location',
+      location: 'Address',
       linkedin: 'LinkedIn',
     },
   },

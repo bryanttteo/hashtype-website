@@ -17,7 +17,8 @@ export const contact = {
   get phone() {
     return unscramble(PHONE)
   },
-  location: '', // hidden for now (home office); set e.g. 'Singapore' to show it
+  // Shown on the Contact page only (not in the footer). The line break is kept.
+  location: '2 Venture Drive, #11-03\nVision Exchange, Singapore 608526',
   linkedinUrl: 'https://www.linkedin.com/company/hashtype',
   uen: '202654815K', // shown in the footer beside the legal name
 }

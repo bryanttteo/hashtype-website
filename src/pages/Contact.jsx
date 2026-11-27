@@ -102,7 +102,10 @@ export default function Contact() {
               {contact.location && (
                 <div>
                   <dt className="label">{details.labels.location}</dt>
-                  <dd>{contact.location}</dd>
+                  <dd>
+                    <ContactIcon name="address" />
+                    <address className="addr">{contact.location}</address>
+                  </dd>
                 </div>
               )}
               <div>

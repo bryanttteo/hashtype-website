@@ -34,6 +34,16 @@ const icons = {
       <circle className="ci-dot ci-dot3" cx="15.5" cy="10.5" r="1" />
     </>
   ),
+  // Map pin: hops and settles
+  address: (
+    <>
+      <g className="ci-pin">
+        <path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" />
+        <circle cx="12" cy="11" r="2.2" />
+      </g>
+      <path className="ci-shadow" d="M9 21.5h6" />
+    </>
+  ),
   // Profile card with a small network: the dots connect
   linkedin: (
     <>
