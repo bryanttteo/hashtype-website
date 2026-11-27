@@ -12,7 +12,7 @@ purpose: Single source for every contact detail on the site. Replace each placeh
 | location | Hidden for now (home office) | Contact |
 | linkedin_url | https://www.linkedin.com/company/hashtype | Footer, Contact |
 | legal_name | HashType Technologies Pte Ltd | Footer copyright: "© <year> HashType Technologies Pte Ltd" |
-| uen | Hidden until registered | Footer |
+| uen | 202654815K | Footer, beside "© <year> HashType Technologies Pte Ltd" |
 | domain | hashtype.net | sitemap.xml, robots.txt, Open Graph tags |
 
 ## Contact link labels
