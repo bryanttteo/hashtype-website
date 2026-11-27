@@ -13,7 +13,7 @@ const mix = (t, a) =>
   `rgba(${MINT.map((m, i) => Math.round(m + (INDIGO[i] - m) * t)).join(',')},${a})`
 
 // One even strength for the traces on every page, top to bottom (1 = the old hero's strength).
-const STRENGTH = 0.4
+const STRENGTH = 0.25
 
 function seeded(seed) {
   let h = seed >>> 0 || 1
