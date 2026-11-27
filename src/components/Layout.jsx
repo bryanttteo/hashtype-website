@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
 import FloatingActions from './FloatingActions.jsx'
+import SiteCircuit from './SiteCircuit.jsx'
 
 // New page → top. Link with #anchor → that section.
 function ScrollManager() {
@@ -27,6 +28,7 @@ export default function Layout() {
         Skip to content
       </a>
       <ScrollManager />
+      <SiteCircuit />
       <Header />
       <main id="main" tabIndex="-1">
         <Outlet />
